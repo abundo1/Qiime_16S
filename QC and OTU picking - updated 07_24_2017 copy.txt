@@ -1,0 +1,145 @@
+1.  FastQC Quality check 
+
+fastqc *.fastq --outdir FastQC  
+#run all .fastq files through FastQC Application and save the results in a folder named FastQC. Note the folder must be created in the current directory before running the command
+---
+NOTE: a lot of Nextera adaptor sequences were discovered
+---
+
+[2.] Adapter trimming using BBDuk in the BBTools package
+
+# create "Adapter_Trimmed"
+files_1=(*_R1_001.fastq);files_2=(*_R2_001.fastq);sorted_files_1=($(printf "%s\n" "${files_1[@]}" | sort -u));sorted_files_2=($(printf "%s\n" "${files_2[@]}" | sort -u));for ((i=0; i<${#sorted_files_1[@]}; i+=1)); do bbduk.sh -Xmx20g in1=${sorted_files_1[i]} in2=${sorted_files_2[i]} out1=Adapter_Trimmed/A_trimmed_${sorted_files_1[i]%%.*}.fastq out2=Adapter_Trimmed/A_trimmed_${sorted_files_2[i]%%.*}.fastq ref=$ADAPTSEQ/nextera.fa.gz ktrim=r k=23 mink=11 hdist=1 tpe tbo &>Adapter_Trimmed/A_trimmed_${sorted_files_2[i]%%.*}.log;done
+files_1=(*_R1_001.fastq.gz);files_2=(*_R2_001.fastq.gz);sorted_files_1=($(printf "%s\n" "${files_1[@]}" | sort -u));sorted_files_2=($(printf "%s\n" "${files_2[@]}" | sort -u));for ((i=0; i<${#sorted_files_1[@]}; i+=1)); do bbduk.sh -Xmx20g in1=${sorted_files_1[i]} in2=${sorted_files_2[i]} out1=Adapter_Trimmed/A_trimmed_${sorted_files_1[i]%%.*}.fastq out2=Adapter_Trimmed/A_trimmed_${sorted_files_2[i]%%.*}.fastq ref=$ADAPTSEQ/nextera.fa.gz ktrim=r k=23 mink=11 hdist=1 tpe tbo &>Adapter_Trimmed/A_trimmed_${sorted_files_2[i]%%.*}.log;done
+
+
+# $files_1=(*_R1_001.fastq); pick all R1 files and assign to an array file_1
+#$files_2=(*_R2_001.fastq); pick all R2 files and assign to an array file_2
+#sorted_files_1=($(printf "%s\n" "${files_1[@]}" | sort -u));sorted_files_2=($(printf "%s\n" "${files_2[@]}" | sort -u));  sort arrays to pair R1 and R2 from the same sample
+#for ((i=0; i<${#sorted_files_1[@]}; i+=1)); 
+#do bbduk.sh -Xmx20g in1=${sorted_files_1[i]} in2=${sorted_files_2[i]} out1=Adapter_Trimmed/A_trimmed_${sorted_files_1[i]%%.*}.fastq out2=Adapter_Trimmed/A_trimmed_${sorted_files_2[i]%%.*}.fastq ref=$ADAPTSEQ/nextera.fa.gz ktrim=r k=23 mink=11 hdist=1 tpe tbo;done ->  BDuk parameters
+#&>Adapter_Trimmed/A_trimmed_${sorted_files_2[i]%%.*}.log  -> log file
+
+3. Fast QC Quality check 
+fastqc *.fastq --outdir FastQC
+# to confirm the adapters have been removed. One can also use the grep ">" or grep -c ">" commands on linux system to check whether a specific string of adaptor sequence is still present
+
+[4.] Merge paired reads with BBMerge
+files_1=(*_R1_001.fastq);files_2=(*_R2_001.fastq);sorted_files_1=($(printf "%s\n" "${files_1[@]}" | sort -u));sorted_files_2=($(printf "%s\n" "${files_2[@]}" | sort -u));for ((i=0; i<${#sorted_files_1[@]}; i+=1)); do bbmerge-auto.sh in1=${sorted_files_1[i]} in2=${sorted_files_2[i]} out=Merged2/Merged_${sorted_files_1[i]%%.*}.fastq  outu1=UnMerged2/UnMerged_${sorted_files_1[i]%%.*}.fastq outu2=UnMerged2/UnMerged_${sorted_files_2[i]%%.*}.fastq ihist=Logs_Merged2/A_trimmed_${sorted_files_2[i]%%.*}.hist ecct extend2=20 iterations=5 &>Logs_Merged2/A_trimmed_${sorted_files_2[i]%%.*}.log;done
+
+[5.] Renaming merged Fastq files 
+# Remove "TOS" names and name with more informative names like "SW300", "C002", "etc" <= these informative are extracted from the original long illumina names 
+for i in *.fastq;do echo ${i//.*} | cut -d"_" -f4 | sed s'/TOS//' | xargs  -I file mv  $i file.fastq;done
+# to count the files in the cd
+ls -lR | grep ^- | wc -l
+
+
+[6.]  QIIME: Convert fastq to fasta and join sequences:
+multiple_split_libraries_fastq.py -i Merged2 -o Joined_Mergerd_output_folder_3   --sampleid_indicator=.fastq
+#this will generate seqs.fna file for downstream application. 
+
+[7:] MOTHUR: Filter reads less than 260 and greater than 320
+Load Mothur, i.e., type Mothur and Enter for mothur to load 
+copy and paste ==> screen.seqs(fasta=seqs.fna, minlength=260, maxlength=320)
+#make sure the seqs.fna file
+#a "seqs.good.fna" file is generated for downstream use.  I renamed it to seqs.fna to match most of Qiime scripts
+
+[8.] Confirm sequences in the "seqs.good.fna" have the right length
+
+
+#Make Length distribution file. Will contain sequence names and lengths
+#Must be in the same directory 
+pyfasta info -n -1 ./seqs.good.fna > Length_Distro.txt
+pyfasta info -n -1 ./seqs.fna > Length_Distribution_Orig_fna.txt
+
+#Extract the sequence length, count and bin the sequence lengths
+cat Length_Distro.txt | cut -d" " -f7 | cut -d":" -f2| sort -n| uniq -c 
+
+
+
+#make compare histogram with that of the original fna file 
+
+[10]. de vovo OTU picking 
+ pick_de_novo_otus.py -i $PWD/seqs.fna -o $PWD/uclust_otus/
+ 
+ [#] if error occurs, you may need to reformat seqs.fna
+ reformat.sh in= seqs.good.fna out=reformated_seqs.fna
+ 
+[11]. Filter OTUs that are not bacteria
+filter_taxa_from_otu_table.py -i otu_table.biom -o otu_table_taxa_filtered.biom -p k__Bacteria
+
+12. Remove blanks 
+filter_samples_from_otu_table.py -i otu_table_taxa_filtered.biom -o otu_table_taxa_filtered_no_blank.biom -m mapping_corrected.txt  -s 'Description:*,!Blank*'
+
+[13.] Filter OTU table to remove OTUs with less than XX count:
+filter_otus_from_otu_table.py -i otu_table_taxa_filtered.biom -o otu_table_taxa_filtered_no_less_than_25.biom -n 25
+----
+NOTE: It is not necessary to generate tissue-specific biom tables and mapping files if analysis are done following the "Bioconductor workflow for microbiome" in R
+
+
+
+[14.] 
+
+[14.a] #Filter biom table to generate tissue using tissue-specific mapping file
+
+filter_samples_from_otu_table.py -i otu_table.biom -o ck_CE.biom -m ck_mapping_corrected.txt -s 'Tissue:CE'
+
+filter_samples_from_otu_table.py -i otu_table.biom -o ck_IL.biom -m ck_mapping_corrected.txt -s 'Tissue:IL'
+
+filter_samples_from_otu_table.py -i otu_table.biom -o ck_TW.biom -m ck_mapping_corrected.txt -s 'Tissue:TW'
+
+filter_samples_from_otu_table.py -i otu_table.biom -o ck_SW.biom -m ck_mapping_corrected.txt -s 'Tissue:SW'
+
+filter_samples_from_otu_table.py -i otu_table.biom -o ck_TT.biom -m ck_mapping_corrected.txt -s 'Tissue:TT' 
+
+
+
+[14.b] #Did the filter work?
+biom convert -i ck_CE.biom -o ck_CE_from_biom.txt --to-tsv
+----
+
+[15.] Summarize taxa through plots:  
+#example
+summarize_taxa_through_plots.py -i ck_CE.biom -o ck_CE_taxa_summary -m ck_mapping_corrected.txt
+summarize_taxa_through_plots.py -o taxa_summary -i otu_table.biom -m Fasting_Map.txt
+
+summarize_taxa_through_plots.py -i ck_CE.biom -o CE_Group/ -f -s -c Age -m ck_mapping_corrected.txt 
+summarize_taxa_through_plots.py -i ck_IL.biom -o IL_Group/ -f -s -c Age -m ck_mapping_corrected.txt 
+summarize_taxa_through_plots.py -i ck_TW.biom -o TW_Group/ -f -s -c Age -m ck_mapping_corrected.txt 
+
+summarize_taxa_through_plots.py -i ck_SW.biom -o SW_Group/ -f -s -c Age -m ck_mapping_corrected.txt 
+
+summarize_taxa_through_plots.py -i ck_TT.biom -o TT_Group/ -f -s -c Age -m ck_mapping_corrected.txt 
+
+
+[16.] Determine number of reads per sample for rarefaction:
+biom summarize-table -i ck_CE.biom -o biom_summary_ck_CE.txt
+biom summarize-table -i ck_CE.biom -o biom_summary_ck_CE.txt
+biom summarize-table -i ck_IL.biom -o biom_summary_ck_IL.txt
+
+biom summarize-table -i ck_TW.biom -o biom_summary_ck_TW.txt
+
+biom summarize-table -i ck_SW.biom -o biom_summary_ck_SW.txt
+
+biom summarize-table -i ck_TT.biom -o biom_summary_ck_TT.txt
+
+biom summarize-table -i otu_table.biom -o biom_summary_orig.txt
+
+
+[17.] Rareify to appropriate number:
+#Example -> single_rarefaction.py -i reo.biom -o reo_rare5000.biom -d 5000
+
+single_rarefaction.py -i ck_CE.biom -o ck_CE_rare9420.biom -d 9420
+single_rarefaction.py -i ck_IL.biom -o ck_IL_rare9420.biom -d 9420
+single_rarefaction.py -i ck_TW.biom -o ck_TW_rare9420.biom -d 9420
+single_rarefaction.py -i ck_SW.biom -o ck_SW_rare9420.biom -d 9420
+single_rarefaction.py -i ck_TT.biom -o ck_TT_rare9420.biom -d 9420
+
+
+
+
+16. TO BE CONTINUEDpyfasta info -n -1 ./seqs.good.fna > Length_Distro.txt
+
+
+
+
