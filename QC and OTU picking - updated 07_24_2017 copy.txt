@@ -80,7 +80,11 @@ NOTE: It is not necessary to generate tissue-specific biom tables and mapping fi
 
 [14.] 
 
-[14.a] #Filter biom table to generate tissue using tissue-specific mapping file
+14a Validate mapping file 
+validate_mapping_file.py -m     ck_mapping.txt -o Validated_ck_mapping
+
+
+[14.b] #Filter biom table to generate tissue using tissue-specific mapping file
 
 filter_samples_from_otu_table.py -i otu_table.biom -o ck_CE.biom -m ck_mapping_corrected.txt -s 'Tissue:CE'
 
@@ -94,7 +98,7 @@ filter_samples_from_otu_table.py -i otu_table.biom -o ck_TT.biom -m ck_mapping_c
 
 
 
-[14.b] #Did the filter work?
+[14.c] #Did the filter work?
 biom convert -i ck_CE.biom -o ck_CE_from_biom.txt --to-tsv
 ----
 
