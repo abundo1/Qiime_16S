@@ -81,7 +81,7 @@ NOTE: It is not necessary to generate tissue-specific biom tables and mapping fi
 [14.] 
 
 14a Validate mapping file 
-validate_mapping_file.py -m     ck_mapping.txt -o Validated_ck_mapping
+validate_mapping_file.py -m     tk_mapping.txt -o Validated_tk_mapping
 
 
 [14.b] #Filter biom table to generate tissue using tissue-specific mapping file
@@ -104,14 +104,14 @@ biom convert -i ck_CE.biom -o ck_CE_from_biom.txt --to-tsv
 
 [15.] Summarize taxa through plots:  
 #example
-summarize_taxa_through_plots.py -i ck_CE.biom -o ck_CE_taxa_summary -m ck_mapping_corrected.txt
-summarize_taxa_through_plots.py -o taxa_summary -i otu_table.biom -m Fasting_Map.txt
+summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank.biom -o tk_all_taxa_summary -c Tissue -m tk_mapping_corrected.txt
 
-summarize_taxa_through_plots.py -i ck_CE.biom -o CE_Group/ -f -s -c Age -m ck_mapping_corrected.txt 
-summarize_taxa_through_plots.py -i ck_IL.biom -o IL_Group/ -f -s -c Age -m ck_mapping_corrected.txt 
-summarize_taxa_through_plots.py -i ck_TW.biom -o TW_Group/ -f -s -c Age -m ck_mapping_corrected.txt 
+summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank_CE.biom -o CE_Group/ -f -s -c Age -m tk_mapping_corrected.txt 
+summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank_IL.biom -o IL_Group/ -f -s -c Age -m tk_mapping_corrected.txt 
 
-summarize_taxa_through_plots.py -i ck_SW.biom -o SW_Group/ -f -s -c Age -m ck_mapping_corrected.txt 
+summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank_TW.biom -o TW_Group/ -f -s -c Age -m tk_mapping_corrected.txt 
+
+summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank_SW.biom -o SW_Group/ -f -s -c Age -m tk_mapping_corrected.txt 
 
 summarize_taxa_through_plots.py -i ck_TT.biom -o TT_Group/ -f -s -c Age -m ck_mapping_corrected.txt 
 
