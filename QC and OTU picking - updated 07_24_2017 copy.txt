@@ -33,19 +33,27 @@ for i in *.fastq;do echo ${i//.*} | cut -d"_" -f4 | sed s'/TOS//' | xargs  -I fi
 # to count the files in the cd
 ls -lR | grep ^- | wc -l
 
+[5a.] The merged file from the tk and ck data is placed on the same folder
 
-[6.]  QIIME: Convert fastq to fasta and join sequences:
-multiple_split_libraries_fastq.py -i Merged2 -o Joined_Mergerd_output_folder_3   --sampleid_indicator=.fastq
+[5b.]
+#added a prefix to the commercial turkey files to make them unique
+#for chickens C is added
+for filename in *.fastq; do mv "$filename" "C$filename"; done;
+#for turkeys T is added
+for filename in *.fastq; do mv "$filename" "T$filename"; done;
+
+
+[6.  QIIME: Convert fastq to fasta and join sequences:
+multiple_split_libraries_fastq.py -i turkey_chicken -o Joined_Mergerd_ck_tk   --sampleid_indicator=.fastq
 #this will generate seqs.fna file for downstream application. 
 
-[7:] MOTHUR: Filter reads less than 260 and greater than 320
+7. MOTHUR: Filter reads less than 260 and greater than 320
 Load Mothur, i.e., type Mothur and Enter for mothur to load 
 copy and paste ==> screen.seqs(fasta=seqs.fna, minlength=260, maxlength=320)
 #make sure the seqs.fna file
 #a "seqs.good.fna" file is generated for downstream use.  I renamed it to seqs.fna to match most of Qiime scripts
 
-[8.] Confirm sequences in the "seqs.good.fna" have the right length
-
+8. Confirm sequences in the "seqs.good.fna" have the right length
 
 #Make Length distribution file. Will contain sequence names and lengths
 #Must be in the same directory 
@@ -55,36 +63,34 @@ pyfasta info -n -1 ./seqs.fna > Length_Distribution_Orig_fna.txt
 #Extract the sequence length, count and bin the sequence lengths
 cat Length_Distro.txt | cut -d" " -f7 | cut -d":" -f2| sort -n| uniq -c 
 
-
-
 #make compare histogram with that of the original fna file 
 
-[10]. de vovo OTU picking 
+10. de vovo OTU picking 
  pick_de_novo_otus.py -i $PWD/seqs.fna -o $PWD/uclust_otus/
  
- [#] if error occurs, you may need to reformat seqs.fna
+ # if error occurs, you may need to reformat seqs.fna
  reformat.sh in= seqs.good.fna out=reformated_seqs.fna
  
-[11]. Filter OTUs that are not bacteria
+11. Filter OTUs that are not bacteria
 filter_taxa_from_otu_table.py -i otu_table.biom -o otu_table_taxa_filtered.biom -p k__Bacteria
 
 12. Remove blanks 
 filter_samples_from_otu_table.py -i otu_table_taxa_filtered.biom -o otu_table_taxa_filtered_no_blank.biom -m mapping_corrected.txt  -s 'Description:*,!Blank*'
 
-[13.] Filter OTU table to remove OTUs with less than XX count:
+13. Filter OTU table to remove OTUs with less than XX count:
 filter_otus_from_otu_table.py -i otu_table_taxa_filtered.biom -o otu_table_taxa_filtered_no_less_than_25.biom -n 25
 ----
 NOTE: It is not necessary to generate tissue-specific biom tables and mapping files if analysis are done following the "Bioconductor workflow for microbiome" in R
 
 
 
-[14.] 
+14.
 
 14a Validate mapping file 
 validate_mapping_file.py -m     tk_mapping.txt -o Validated_tk_mapping
 
 
-[14.b] #Filter biom table to generate tissue using tissue-specific mapping file
+14.b #Filter biom table to generate tissue using tissue-specific mapping file
 
 filter_samples_from_otu_table.py -i otu_table.biom -o ck_CE.biom -m ck_mapping_corrected.txt -s 'Tissue:CE'
 
@@ -98,11 +104,11 @@ filter_samples_from_otu_table.py -i otu_table.biom -o ck_TT.biom -m ck_mapping_c
 
 
 
-[14.c] #Did the filter work?
+14.c #Did the filter work?
 biom convert -i ck_CE.biom -o ck_CE_from_biom.txt --to-tsv
 ----
 
-[15.] Summarize taxa through plots:  
+15. Summarize taxa through plots:  
 #example
 summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank.biom -o tk_all_taxa_summary -c Tissue -m tk_mapping_corrected.txt
 
@@ -116,7 +122,7 @@ summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank_SW.biom -o S
 summarize_taxa_through_plots.py -i ck_TT.biom -o TT_Group/ -f -s -c Age -m ck_mapping_corrected.txt 
 
 
-[16.] Determine number of reads per sample for rarefaction:
+16. Determine number of reads per sample for rarefaction:
 biom summarize-table -i ck_CE.biom -o biom_summary_ck_CE.txt
 
 biom summarize-table -i ck_IL.biom -o biom_summary_ck_IL.txt
@@ -130,7 +136,7 @@ biom summarize-table -i ck_TT.biom -o biom_summary_ck_TT.txt
 biom summarize-table -i otu_table_taxa_filtered_no_less_than_25.biom -o biom_summary_orig.txt
 
 
-[17.] Rareify to appropriate number:
+17. Rareify to appropriate number:
 #Example -> single_rarefaction.py -i reo.biom -o reo_rare5000.biom -d 5000
 
 single_rarefaction.py -i ck_CE.biom -o ck_CE_rare9420.biom -d 9420
