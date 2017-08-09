@@ -65,8 +65,8 @@ cat Length_Distro.txt | cut -d" " -f7 | cut -d":" -f2| sort -n| uniq -c
 
 #make compare histogram with that of the original fna file 
 
-10. de vovo OTU picking 
- pick_de_novo_otus.py -i $PWD/seqs.fna -o $PWD/uclust_otus/
+[10.] de vovo OTU picking 
+ pick_de_novo_otus.py -i $PWD/seqs.good.fna -o $PWD/uclust_otus/
  
  # if error occurs, you may need to reformat seqs.fna
  reformat.sh in= seqs.good.fna out=reformated_seqs.fna
