@@ -112,7 +112,7 @@ filter_samples_from_otu_table.py -i otu_table_taxa_filtered_no_less_than_25.biom
 biom convert -i ck_CE.biom -o ck_CE_from_biom.txt --to-tsv
 ----
 
-15. Summarize taxa through plots: 
+[15]. Summarize taxa through plots: 
 summarize_taxa_through_plots.py -i .biom -o all_Group -c AgeSpecies -m merged_ck_tk_mapping_corrected.txt
 
 summarize_taxa_through_plots.py -i tk_ck_CE.biom -o CE_Group/ -f -s -c AgeSpecies -m merged_ck_tk_mapping_corrected.txt 
@@ -126,6 +126,11 @@ summarize_taxa_through_plots.py -i tk_ck_SW.biom -o SW_Group/ -f -s -c AgeSpecie
 summarize_taxa_through_plots.py -i ck_TT.biom -o TT_Group/ -f -s -c AgeSpecies -m merged_ck_tk_mapping_corrected.txt
 
 summarize_taxa_through_plots.py -i ck_TT_TW_comparison.biom -o TT_TW_Comparison_Group/ -f -s -c AgeSpecies -m merged_ck_tk_mapping_TT_TW_comparison_corrected.txt
+
+
+17. Determine core microbiome
+
+
 
 16. Determine number of reads per sample for rarefaction:
 biom summarize-table -i ck_CE.biom -o biom_summary_ck_CE.txt
