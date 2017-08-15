@@ -127,8 +127,22 @@ summarize_taxa_through_plots.py -i ck_TT.biom -o TT_Group/ -f -s -c AgeSpecies -
 
 summarize_taxa_through_plots.py -i ck_TT_TW_comparison.biom -o TT_TW_Comparison_Group/ -f -s -c AgeSpecies -m merged_ck_tk_mapping_TT_TW_comparison_corrected.txt
 
+#species level
 
-17. Determine core microbiome
+summarize_taxa.py -i tk_ck_CE.biom -L 7 -o ./tax
+
+summarize_taxa.py -i tk_ck_CE.biom -L 7 -a True -o ./tax2_counts
+
+17. Compute core microbiome
+
+compute_core_microbiome.py -i otu_table.biom -o otu_table_core
+compute_core_microbiome.py -i tk_ck_CE.biom -o otu_table_core_01CK_CE --min_fraction_for_core 0. --valid_states "AgeSpecies:01W_CK"
+compute_core_microbiome.py -i tk_ck_CE.biom -o otu_table_core_01WTK_CE --valid_states "AgeSpecies:01W_TK"
+compute_core_microbiome.py -i tk_ck_IL.biom -o otu_table_core_01WTK_IL --valid_states "AgeSpecies:01W_TK"
+compute_core_microbiome.py -i tk_ck_IL.biom -o otu_table_core_03WTK_IL --valid_states "AgeSpecies:03W_TK"
+compute_core_microbiome.py -i tk_ck_TW.biom -o otu_table_core_01WTK_IL --valid_states "AgeSpecies:01W_TK"
+
+
 
 
 
