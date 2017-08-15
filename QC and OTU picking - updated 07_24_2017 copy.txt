@@ -1,3 +1,4 @@
+#Hi Michael
 1.  FastQC Quality check 
 
 fastqc *.fastq --outdir FastQC  
@@ -131,19 +132,7 @@ summarize_taxa_through_plots.py -i ck_TT_TW_comparison.biom -o TT_TW_Comparison_
 
 summarize_taxa.py -i tk_ck_CE.biom -L 7 -o ./tax
 
-summarize_taxa.py -i tk_ck_CE.biom -L 7 -a -o ./tax2_counts
-
-summarize_taxa.py -i tk_ck_CE.biom -L 7 -a -o ./tax2_counts_with_mapping_file -m merged_ck_tk_mapping_corrected.txt
-
-summarize_taxa_through_plots.py -i tk_ck_CE_L7.biom -o CE_Group_species/ -f -s -c SampleID -m merged_ck_tk_mapping_corrected.txt
-
-# adding metadata to biom files
-biom add-metadata -i tk_ck_CE_L7.biom -o tk_ck_CE_L7_metadata.biom --sample-metadata-fp merged_ck_tk_mapping_corrected.txt
-biom add-metadata -i tk_ck_CE_L7.biom -o tk_ck_CE_L7_metadata.biom --observation-metadata-fp merged_ck_tk_mapping_corrected.txt
-
-summarize_taxa_through_plots.py -i tk_ck_CE_L7_metadata.biom -o CE_Group_species/ -f -s -c AgeSpecies -m merged_ck_tk_mapping_corrected.txt
-
-
+summarize_taxa.py -i tk_ck_CE.biom -L 7 -a True -o ./tax2_counts
 
 17. Compute core microbiome
 
