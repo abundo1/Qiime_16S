@@ -132,7 +132,7 @@ summarize_taxa_through_plots.py -i ck_TT_TW_comparison.biom -o TT_TW_Comparison_
 
 summarize_taxa.py -i tk_ck_CE.biom -L 7 -o ./tax
 
-summarize_taxa.py -i tk_ck_CE.biom -L 7 -a True -o ./tax2_counts
+summarize_taxa.py -i tk_ck_CE.biom -L 7 -a -o ./tax2_counts
 
 17. Compute core microbiome
 
@@ -164,7 +164,6 @@ single_rarefaction.py -i otu_table_taxa_filtered_no_less_than_25.biom -o ck_tk_a
 18. Beta diversity:
 #generate UniFrac for R
 beta_diversity.py -i ck_tk_all_rare_1000.biom -o bdv_ck_tk_all_rare1000/ -t rep_set.tre
-
 
 
 _____________________________________________________________________
