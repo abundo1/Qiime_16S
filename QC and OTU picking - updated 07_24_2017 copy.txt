@@ -125,6 +125,90 @@ summarize_taxa_through_plots.py -i ck_SW.biom -o SW_Group_flock/ -f -s -c AgeFlo
 summarize_taxa_through_plots.py -i ck_TW.biom -o TW_Group_flock/ -f -s -c AgeFlockTissue -m ck_mapping_corrected.txt 
 
 
+17. Compute core microbiome
+
+#ck_CE
+
+compute_core_microbiome.py -i ck_CE.biom -o otu_table_core_01CK_CE  --valid_states "AgeTissue:01WCE"
+compute_core_microbiome.py -i ck_CE.biom -o otu_table_core_03CK_CE  --valid_states "AgeTissue:03WCE"
+
+compute_core_microbiome.py -i ck_CE.biom -o otu_table_core_05CK_CE  --valid_states "AgeTissue:05WCE"
+
+compute_core_microbiome.py -i ck_CE.biom -o otu_table_core_08CK_CE  --valid_states "AgeTissue:08WCE"
+
+compute_core_microbiome.py -i ck_CE.biom -o otu_table_core_12CK_CE  --valid_states "AgeTissue:12WCE"
+
+compute_core_microbiome.py -i ck_CE.biom -o otu_table_core_16CK_CE  --valid_states "AgeTissue:16WCE"
+
+compute_core_microbiome.py -i ck_CE.biom -o otu_table_core_25CK_CE  --valid_states "AgeTissue:25WCE"
+
+compute_core_microbiome.py -i ck_CE.biom -o otu_table_core_36CK_CE  --valid_states "AgeTissue:36WCE"
+
+compute_core_microbiome.py -i ck_CE.biom -o otu_table_core_51CK_CE  --valid_states "AgeTissue:51WCE"
+
+
+#ck_IL
+compute_core_microbiome.py -i ck_IL.biom -o otu_table_core_01CK_IL  --valid_states "AgeTissue:01WIL"
+
+compute_core_microbiome.py -i ck_IL.biom -o otu_table_core_03CK_IL  --valid_states "AgeTissue:03WIL"
+
+compute_core_microbiome.py -i ck_IL.biom -o otu_table_core_05CK_IL  --valid_states "AgeTissue:05WIL"
+
+compute_core_microbiome.py -i ck_IL.biom -o otu_table_core_08CK_IL  --valid_states "AgeTissue:08WIL"
+
+compute_core_microbiome.py -i ck_IL.biom -o otu_table_core_12CK_IL  --valid_states "AgeTissue:12WIL"
+
+compute_core_microbiome.py -i ck_IL.biom -o otu_table_core_16CK_IL  --valid_states "AgeTissue:16WIL"
+
+compute_core_microbiome.py -i ck_IL.biom -o otu_table_core_25CK_IL  --valid_states "AgeTissue:25WIL"
+
+compute_core_microbiome.py -i ck_IL.biom -o otu_table_core_36CK_IL  --valid_states "AgeTissue:36WIL"
+
+compute_core_microbiome.py -i ck_IL.biom -o otu_table_core_51CK_IL  --valid_states "AgeTissue:51WIL"
+
+#ck_SW
+compute_core_microbiome.py -i ck_SW.biom -o otu_table_core_01CK_IL  --valid_states "AgeTissue:01WSW"
+
+compute_core_microbiome.py -i ck_SW.biom -o otu_table_core_03CK_IL  --valid_states "AgeTissue:03WSW"
+
+compute_core_microbiome.py -i ck_SW.biom -o otu_table_core_05CK_IL  --valid_states "AgeTissue:05WSW"
+
+compute_core_microbiome.py -i ck_SW.biom -o otu_table_core_08CK_IL  --valid_states "AgeTissue:08WSW"
+
+compute_core_microbiome.py -i ck_SW.biom -o otu_table_core_12CK_IL  --valid_states "AgeTissue:12WSW"
+
+compute_core_microbiome.py -i ck_SW.biom -o otu_table_core_16CK_IL  --valid_states "AgeTissue:16WSW"
+
+compute_core_microbiome.py -i ck_SW.biom -o otu_table_core_25CK_IL  --valid_states "AgeTissue:25WSW"
+
+compute_core_microbiome.py -i ck_SW.biom -o otu_table_core_36CK_IL  --valid_states "AgeTissue:36WSW"
+
+compute_core_microbiome.py -i ck_SW.biom -o otu_table_core_51CK_IL  --valid_states "AgeTissue:51WSW"
+
+
+#ck_TW
+compute_core_microbiome.py -i ck_TW.biom -o otu_table_core_01CK_IL  --valid_states "AgeTissue:01WTW"
+
+compute_core_microbiome.py -i ck_TW.biom -o otu_table_core_03CK_IL  --valid_states "AgeTissue:03WTW"
+
+compute_core_microbiome.py -i ck_TW.biom -o otu_table_core_05CK_IL  --valid_states "AgeTissue:05WTW"
+
+compute_core_microbiome.py -i ck_TW.biom -o otu_table_core_08CK_IL  --valid_states "AgeTissue:08WTW"
+
+compute_core_microbiome.py -i ck_TW.biom -o otu_table_core_12CK_IL  --valid_states "AgeTissue:12WTW"
+
+compute_core_microbiome.py -i ck_TW.biom -o otu_table_core_16CK_IL  --valid_states "AgeTissue:16WTW"
+
+compute_core_microbiome.py -i ck_TW.biom -o otu_table_core_25CK_IL  --valid_states "AgeTissue:25WTW"
+
+compute_core_microbiome.py -i ck_TW.biom -o otu_table_core_36CK_IL  --valid_states "AgeTissue:36WTW"
+
+compute_core_microbiome.py -i ck_TW.biom -o otu_table_core_51CK_IL  --valid_states "AgeTissue:51WTW"
+
+
+
+
+
 
 
 
