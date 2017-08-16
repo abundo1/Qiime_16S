@@ -181,17 +181,8 @@ single_rarefaction.py -i otu_table_taxa_filtered_no_less_than_25.biom -o ck_all_
 
 18. Beta diversity:
 #generate UniFrac for R
-beta_diversity.py -i ck_all_rare1043.biom -o bdv_ck_all_rare1043/ -t rep_set.tre
+beta_diversity.py -i ck_tk_all_rare_1000.biom -o bdv_ck_tk_all_rare1000/ -t rep_set.tre
 
-beta_diversity.py -i ck_CE_rare9420.biom -o bdv_ck_CE_rare9420/ -t rep_set.tre
-
-beta_diversity.py -i ck_IL_rare1043.biom -o bdv_ck_IL_rare1043/ -t rep_set.tre
-
-beta_diversity.py -i ck_TW_rare6257.biom -o bdv_ck_TW_rare6257/ -t rep_set.tre
-
-beta_diversity.py -i ck_SW_rare9420.biom -o bdv_ck_SW_rare9420/ -t rep_set.tre
-
-beta_diversity.py -i ck_TT_rare1121.biom -o bdv_ck_TT_rare1121/ -t rep_set.tre
 
 _____________________________________________________________________
 
