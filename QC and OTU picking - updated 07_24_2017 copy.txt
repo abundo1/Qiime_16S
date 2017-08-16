@@ -132,7 +132,7 @@ summarize_taxa_through_plots.py -i ck_TT_TW_comparison.biom -o TT_TW_Comparison_
 
 summarize_taxa.py -i tk_ck_CE.biom -L 7 -o ./tax
 
-summarize_taxa.py -i tk_ck_CE.biom -L 7 -a True -o ./tax2_counts
+summarize_taxa.py -i tk_ck_CE.biom -L 7 -a -o ./tax2_counts
 
 17. Compute core microbiome
 
