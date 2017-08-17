@@ -128,7 +128,7 @@ summarize_taxa_through_plots.py -i ck_TW.biom -o TW_Group_flock/ -f -s -c AgeFlo
 summarize_taxa.py -i ck_CE.biom -L 7 -a -o ./tax2_counts
 
 
-17. Compute core microbiome
+[17.] Compute core microbiome
 
 #ck_CE
 
@@ -211,7 +211,9 @@ compute_core_microbiome.py -i ck_TW.biom -o otu_table_core_36CK_IL  --valid_stat
 
 compute_core_microbiome.py -i ck_TW.biom -o otu_table_core_51CK_IL  --valid_states "AgeTissue:51WTW"
 
+[18] # Estimates the observation (e.g., OTU) richness of samples in a BIOM table
 
+estimate_observation_richness.py -i ck_CE.biom -o estimates_out_ckCE
 
 
 
