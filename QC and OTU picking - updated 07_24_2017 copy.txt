@@ -102,7 +102,7 @@ filter_samples_from_otu_table.py -i otu_table.biom -o ck_CE.biom -m ck_mapping_c
 
 
 [14.d] #Did the filter work?
-biom convert -i ck_CE.biom -o ck_CE_from_biom.txt --to-tsv
+biom convert -i ck_CE_L7.biom -o ck_CE_L7from_biom.txt --to-tsv
 ----
 
 [15.] Summarize taxa through plots:  
@@ -125,7 +125,12 @@ summarize_taxa_through_plots.py -i ck_SW.biom -o SW_Group_flock/ -f -s -c AgeFlo
 summarize_taxa_through_plots.py -i ck_TW.biom -o TW_Group_flock/ -f -s -c AgeFlockTissue -m ck_mapping_corrected.txt 
 
 #summarize_species level
+
+raw counts:
 summarize_taxa.py -i ck_CE.biom -L 7 -a -o ./tax2_counts
+
+relative abundance:
+summarize_taxa.py -i ck_CE.biom -L 7 -o ./tax2_counts_relative_abundance
 
 
 [17.] Compute core microbiome
