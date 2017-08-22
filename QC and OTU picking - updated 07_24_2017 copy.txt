@@ -111,16 +111,70 @@ filter_samples_from_otu_table.py -i otu_table_taxa_filtered_no_less_than_25.biom
 
 filter_samples_from_otu_table.py -i otu_table_taxa_filtered_no_less_than_25.biom -o tk_ck_CE.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Tissue:CE'
 
-#Did the filter work?
-biom convert -i tk_ck_CE.biom -o ck_CE_from_biom.txt --to-tsv
-
-#
-
-filter_samples_from_otu_table.py -i otu_table_taxa_filtered_no_less_than_25.biom -o tk_ck_IL.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Tissue:IL'
+filter_samples_from_otu_table.py -i otu_table_taxa_filtered_no_less_than_25.biom -o tk_ck_SW.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Tissue:SW'
 
 filter_samples_from_otu_table.py -i otu_table_taxa_filtered_no_less_than_25.biom -o tk_ck_TW.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Tissue:TW'
 
-filter_samples_from_otu_table.py -i otu_table_taxa_filtered_no_less_than_25.biom -o tk_ck_SW.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Tissue:SW'
+#Did the filter work?
+biom convert -i tk_ck_CE.biom -o ck_CE_from_biom.txt --to-tsv
+biom convert -i tk_ck_SW.biom -o ck_SW_from_biom.txt --to-tsv
+
+#Filter Tissues by age
+
+#SW
+filter_samples_from_otu_table.py -i tk_ck_SW.biom -o tk_ck_SW_01W.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Age:01W'
+
+filter_samples_from_otu_table.py -i tk_ck_SW.biom -o tk_ck_SW_03W.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Age:03W'
+
+filter_samples_from_otu_table.py -i tk_ck_SW.biom -o tk_ck_SW_05W.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Age:05W'
+
+filter_samples_from_otu_table.py -i tk_ck_SW.biom -o tk_ck_SW_08W.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Age:08W'
+
+filter_samples_from_otu_table.py -i tk_ck_SW.biom -o tk_ck_SW_12W.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Age:12W'
+
+filter_samples_from_otu_table.py -i tk_ck_SW.biom -o tk_ck_SW_16W.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Age:16W'
+
+#TW
+filter_samples_from_otu_table.py -i tk_ck_TW.biom -o tk_ck_TW_01W.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Age:01W'
+
+filter_samples_from_otu_table.py -i tk_ck_TW.biom -o tk_ck_TW_03W.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Age:03W'
+
+filter_samples_from_otu_table.py -i tk_ck_TW.biom -o tk_ck_TW_05W.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Age:05W'
+
+filter_samples_from_otu_table.py -i tk_ck_TW.biom -o tk_ck_TW_08W.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Age:08W'
+
+filter_samples_from_otu_table.py -i tk_ck_TW.biom -o tk_ck_TW_12W.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Age:12W'
+
+filter_samples_from_otu_table.py -i tk_ck_TW.biom -o tk_ck_TW_16W.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Age:16W'
+
+
+
+#species level
+#SW
+summarize_taxa.py -i tk_ck_SW_01W.biom -L 7  -o ./tax_counts_01SW
+summarize_taxa.py -i tk_ck_SW_03W.biom -L 7  -o ./tax_counts_03SW
+summarize_taxa.py -i tk_ck_SW_05W.biom -L 7  -o ./tax_counts_05SW
+
+summarize_taxa.py -i tk_ck_SW_08W.biom -L 7  -o ./tax_counts_08SW
+
+summarize_taxa.py -i tk_ck_SW_12W.biom -L 7  -o ./tax_counts_12SW
+
+summarize_taxa.py -i tk_ck_SW_16W.biom -L 7  -o ./tax_counts_16SW
+
+#TW
+summarize_taxa.py -i tk_ck_TW_01W.biom -L 7  -o ./tax_counts_01TW
+
+summarize_taxa.py -i tk_ck_TW_03W.biom -L 7  -o ./tax_counts_03TW
+
+summarize_taxa.py -i tk_ck_TW_05W.biom -L 7  -o ./tax_counts_05TW
+
+summarize_taxa.py -i tk_ck_TW_08W.biom -L 7  -o ./tax_counts_08TW
+
+summarize_taxa.py -i tk_ck_TW_12W.biom -L 7  -o ./tax_counts_12TW
+
+summarize_taxa.py -i tk_ck_TW_16W.biom -L 7  -o ./tax_counts_16TW
+
+
 
 14.c #Did the filter work?
 biom convert -i tk_ck_CE.biom -o ck_CE_from_biom.txt --to-tsv
