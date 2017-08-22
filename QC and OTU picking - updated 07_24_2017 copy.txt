@@ -90,7 +90,7 @@ NOTE: It is not necessary to generate tissue-specific biom tables and mapping fi
 [14a] Validate mapping file 
 validate_mapping_file.py -m     merged_ck_tk_mapping.txt -o Validated_ck_tk_mapping
 validate_mapping_file.py -m     merged_ck_tk_mapping_TT_TW comparison.txt -o Validated_ck_tk_mapping_TT_TW_comparison
-
+validate_mapping_file.py -m     ck_tk_mapping_no_ck_25W_36W_51W_updated_082217.txt -o Validated_ck_tk_mapping_no_ck_25W_36W_51W
 
 
 [14.b] #Filter biom table to generate tissue using tissue-specific mapping file
@@ -107,6 +107,23 @@ filter_samples_from_otu_table.py -i otu_table_taxa_filtered_no_less_than_25.biom
 
 filter_samples_from_otu_table.py -i otu_table_taxa_filtered_no_less_than_25.biom -o ck_TT_TW_comparison.biom -m merged_ck_tk_mapping_TT_TW_comparison_corrected.txt -s 'Comparison:YES'
 
+#Filter biom table to generate tissue using tissue-specific mapping file (w/o ages 25,36,51W CK)
+
+filter_samples_from_otu_table.py -i otu_table_taxa_filtered_no_less_than_25.biom -o tk_ck_CE.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Tissue:CE'
+
+#Did the filter work?
+biom convert -i tk_ck_CE.biom -o ck_CE_from_biom.txt --to-tsv
+
+#
+
+filter_samples_from_otu_table.py -i otu_table_taxa_filtered_no_less_than_25.biom -o tk_ck_IL.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Tissue:IL'
+
+filter_samples_from_otu_table.py -i otu_table_taxa_filtered_no_less_than_25.biom -o tk_ck_TW.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Tissue:TW'
+
+filter_samples_from_otu_table.py -i otu_table_taxa_filtered_no_less_than_25.biom -o tk_ck_SW.biom -m ck_tk_mapping_no_ck_25W_36W_51W_updated_082217_corrected.txt -s 'Tissue:SW'
+
+14.c #Did the filter work?
+biom convert -i tk_ck_CE.biom -o ck_CE_from_biom.txt --to-tsv
 
 
 14.c #Did the filter work?
@@ -133,8 +150,6 @@ summarize_taxa_through_plots.py -i ck_TT_TW_comparison.biom -o TT_TW_Comparison_
 summarize_taxa.py -i tk_ck_CE.biom -L 7 -o ./tax
 
 summarize_taxa.py -i tk_ck_CE.biom -L 7 -a -o ./tax2_counts
-
-# extract species relative abundance
 
 17. Compute core microbiome
 
