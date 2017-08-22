@@ -134,6 +134,8 @@ summarize_taxa.py -i tk_ck_CE.biom -L 7 -o ./tax
 
 summarize_taxa.py -i tk_ck_CE.biom -L 7 -a -o ./tax2_counts
 
+# extract species relative abundance
+
 17. Compute core microbiome
 
 compute_core_microbiome.py -i otu_table.biom -o otu_table_core
