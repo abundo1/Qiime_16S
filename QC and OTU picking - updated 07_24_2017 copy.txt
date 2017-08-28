@@ -101,6 +101,36 @@ filter_samples_from_otu_table.py -i otu_table.biom -o ck_TT.biom -m ck_mapping_c
 filter_samples_from_otu_table.py -i otu_table.biom -o ck_CE.biom -m ck_mapping_corrected.txt -s 'Tissue:CE'
 
 
+#TW_biom_table_filter with age
+
+filter_samples_from_otu_table.py -i ck_TW.biom -o ck_TW_01W.biom -m ck_mapping_corrected.txt -s 'Age:01W'
+
+filter_samples_from_otu_table.py -i ck_TW.biom -o ck_TW_03W.biom -m ck_mapping_corrected.txt -s 'Age:03W'
+
+filter_samples_from_otu_table.py -i ck_TW.biom -o ck_TW_05W.biom -m ck_mapping_corrected.txt -s 'Age:05W'
+
+filter_samples_from_otu_table.py -i ck_TW.biom -o ck_TW_08W.biom -m ck_mapping_corrected.txt -s 'Age:08W'
+
+filter_samples_from_otu_table.py -i ck_TW.biom -o ck_TW_12W.biom -m ck_mapping_corrected.txt -s 'Age:12W'
+
+filter_samples_from_otu_table.py -i ck_TW.biom -o ck_TW_16W.biom -m ck_mapping_corrected.txt -s 'Age:16W'
+
+filter_samples_from_otu_table.py -i ck_TW.biom -o ck_TW_25W.biom -m ck_mapping_corrected.txt -s 'Age:25W'
+
+filter_samples_from_otu_table.py -i ck_TW.biom -o ck_TW_36W.biom -m ck_mapping_corrected.txt -s 'Age:36W'
+
+filter_samples_from_otu_table.py -i ck_TW.biom -o ck_TW_51W.biom -m ck_mapping_corrected.txt -s 'Age:51W'
+
+# summarize taxa (species level)
+
+summarize_taxa.py -i ck_TW_25W.biom -L 7  -o ./tax_counts_25TW
+
+summarize_taxa.py -i ck_TW_36W.biom -L 7  -o ./tax_counts_36TW
+
+summarize_taxa.py -i ck_TW_51W.biom -L 7  -o ./tax_counts_51TW
+
+
+
 [14.d] #Did the filter work?
 biom convert -i ck_CE_L7.biom -o ck_CE_L7from_biom.txt --to-tsv
 ----
@@ -131,6 +161,7 @@ summarize_taxa.py -i ck_CE.biom -L 7 -a -o ./tax2_counts
 
 relative abundance:
 summarize_taxa.py -i ck_CE.biom -L 7 -o ./tax2_counts_relative_abundance
+summarize_taxa.py -i ck_TW.biom -L 7 -o ./tax2_counts_relative_abundance_TW
 
 
 [17.] Compute core microbiome
