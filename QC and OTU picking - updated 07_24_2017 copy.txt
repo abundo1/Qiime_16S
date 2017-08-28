@@ -38,6 +38,62 @@ ls -lR | grep ^- | wc -l
 multiple_split_libraries_fastq.py -i Merged2 -o Joined_Mergerd_output_folder_3   --sampleid_indicator=.fastq
 #this will generate seqs.fna file for downstream application. 
 
+
+[6.a] Counting # of samples in the seqs.fna file (sample_count)
+
+# Extract the sequence headers per sample from a .fna file
+
+#in seqs.fna
+
+grep ">" seqs.fna | grep C | cut -c-5| sort > tk_CE_sample_no.txt 
+uniq -c tk_CE_sample_no.txt > CE_uniq.txt # this command will give you the number of sequences per sample
+grep -c '>' CE_uniq.txt # this will count the # of retained
+
+grep ">" seqs.fna | grep I | cut -c-5| sort > tk_I_sample_no.txt 
+uniq -c tk_I_sample_no.txt > I_uniq.txt
+grep -c '>' I_uniq.txt 
+
+grep ">" seqs.fna | grep T | cut -c-5| sort > tk_TW_sample_no.txt 
+uniq -c tk_TW_sample_no.txt > TW_uniq.txt
+grep -c '>' TW_uniq.txt 
+
+grep ">" seqs.fna | grep SW | cut -c-6| sort > tk_SW_sample_no.txt 
+uniq -c tk_SW_sample_no.txt > SW_uniq.txt
+grep -c '>' SW_uniq.txt
+
+#in seqs.good.fna
+
+grep ">" seqs.good.fna | grep C | cut -c-5| sort > tk_CE_sample_no.txt 
+
+uniq -c tk_CE_sample_no.txt > CE_uniq.txt 
+
+grep -c '>' CE_uniq.txt 
+
+grep ">" seqs.good.fna | grep I | cut -c-5| sort > tk_I_sample_no.txt 
+
+uniq -c tk_I_sample_no.txt > I_uniq.txt
+
+grep ">" seqs.good.fna | grep T | cut -c-5| sort > tk_TW_sample_no.txt 
+
+uniq -c tk_TW_sample_no.txt > TW_uniq.txt
+
+grep ">" seqs.good.fna | grep SW | cut -c-6| sort > tk_SW_sample_no.txt 
+
+uniq -c tk_SW_sample_no.txt > SW_uniq.txt
+
+
+grep -c '>' I_uniq.txt 
+
+
+grep -c '>' TW_uniq.txt 
+
+
+grep -c '>' SW_uniq.txt
+
+
+
+
+
 [7:] MOTHUR: Filter reads less than 260 and greater than 320
 Load Mothur, i.e., type Mothur and Enter for mothur to load 
 copy and paste ==> screen.seqs(fasta=seqs.fna, minlength=260, maxlength=320)
@@ -62,7 +118,7 @@ cat Length_Distro.txt | cut -d" " -f7 | cut -d":" -f2| sort -n| uniq -c
 [10]. de vovo OTU picking 
  pick_de_novo_otus.py -i $PWD/seqs.fna -o $PWD/uclust_otus/
  
- [#] if error occurs, you may need to reformat seqs.fna
+# if error occurs, you may need to reformat seqs.fna
  reformat.sh in= seqs.good.fna out=reformated_seqs.fna
  
 [11]. Filter OTUs that are not bacteria
@@ -73,7 +129,11 @@ filter_samples_from_otu_table.py -i otu_table_taxa_filtered.biom -o otu_table_ta
 
 [13.] Filter OTU table to remove OTUs with less than XX count:
 filter_otus_from_otu_table.py -i otu_table_taxa_filtered_no_blank.biom -o otu_table_taxa_filtered_no_blank_nless25.biom -n 25
+
 filter_otus_from_otu_table.py -i otu_table_taxa_filtered_no_blank_nless25.biom -o otu_table_taxa_filtered_no_blank_nless25_2.biom -n 25
+
+[13.a] Did the biom table work?
+biom summarize-table -i otu_table_taxa_filtered_no_blank.biom -o biom_summary_tk_all_nless_25.txt
 
 
 ----
