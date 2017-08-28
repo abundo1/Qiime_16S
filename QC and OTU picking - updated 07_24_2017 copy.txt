@@ -72,7 +72,10 @@ filter_taxa_from_otu_table.py -i otu_table.biom -o otu_table_taxa_filtered.biom 
 filter_samples_from_otu_table.py -i otu_table_taxa_filtered.biom -o otu_table_taxa_filtered_no_blank.biom -m mapping_corrected.txt  -s 'Description:*,!Blank*'
 
 [13.] Filter OTU table to remove OTUs with less than XX count:
-filter_otus_from_otu_table.py -i otu_table_taxa_filtered.biom -o otu_table_taxa_filtered_no_less_than_25.biom -n 25
+filter_otus_from_otu_table.py -i otu_table_taxa_filtered_no_blank.biom -o otu_table_taxa_filtered_no_blank_nless25.biom -n 25
+filter_otus_from_otu_table.py -i otu_table_taxa_filtered_no_blank_nless25.biom -o otu_table_taxa_filtered_no_blank_nless25_2.biom -n 25
+
+
 ----
 NOTE: It is not necessary to generate tissue-specific biom tables and mapping files if analysis are done following the "Bioconductor workflow for microbiome" in R
 
