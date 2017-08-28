@@ -129,6 +129,16 @@ summarize_taxa.py -i ck_TW_36W.biom -L 7  -o ./tax_counts_36TW
 
 summarize_taxa.py -i ck_TW_51W.biom -L 7  -o ./tax_counts_51TW
 
+#core_microbiome
+
+compute_core_microbiome.py -i ck_TW_51W.biom -o otu_table_core_51W_CK_TW --valid_states "AgeTissue:51WTW"
+
+compute_core_microbiome.py -i ck_TW_25W.biom -o otu_table_core_36W_CK_TW --valid_states "AgeTissue:25WTW"
+
+compute_core_microbiome.py -i ck_TW_36W.biom -o otu_table_core_25W_CK_TW --valid_states "AgeTissue:36WTW"
+
+ 
+
 
 
 [14.d] #Did the filter work?
