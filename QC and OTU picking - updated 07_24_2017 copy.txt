@@ -147,7 +147,7 @@ NOTE: It is not necessary to generate tissue-specific biom tables and mapping fi
 validate_mapping_file.py -m mapping6.txt -o Validated_tk_mapping6
 
 
-[14.b] #Filter biom table to generate tissue using tissue-specific mapping file
+[14.b] #Filter biom table using the corrected mapping file to generate tissue and age specific biom tables 
 
 #by tissue
 
@@ -214,50 +214,128 @@ filter_samples_from_otu_table.py -i tk_TW.biom -o tk_16WTW.biom -m mapping6_corr
 
 
 
-[14.c] #Did the filter work?
+14.c #Did the filter work?
 biom convert -i tk_CE.biom -o tk_CE_from_biom.txt --to-tsv
 ----
 
 [15.] Summarize taxa 
+
 # summarize taxa (species level)
+
 #CE_summarize taxa (species level)
+summarize_taxa.py -i tk_01WCE.biom -L 7  -o ./species_tax_rel_ab_01CE
+summarize_taxa.py -i tk_01WCE.biom -L 7 -a -o ./species_tax_counts_01CE #quality_check
+biom convert -i tk_01WCE_L7.biom -o tk_01WCE_L7_from_biom.txt --to-tsv #quality checkc
 
-summarize_taxa.py -i tk_01WCE.biom -L 7  -o ./species_tax_counts_01CE
+summarize_taxa.py -i tk_03WCE.biom -L 7  -o ./species_tax_rel_ab_03CE
 
-summarize_taxa.py -i tk_03WCE.biom -L 7  -o ./species_tax_counts_03CE
+summarize_taxa.py -i tk_05WCE.biom -L 7  -o ./species_tax_rel_ab_05CE
 
-summarize_taxa.py -i tk_05WCE.biom -L 7  -o ./species_tax_counts_05CE
+summarize_taxa.py -i tk_08WCE.biom -L 7  -o ./species_tax_rel_ab_08CE
 
-summarize_taxa.py -i tk_08WCE.biom -L 7  -o ./species_tax_counts_08CE
+summarize_taxa.py -i tk_12WCE.biom -L 7  -o ./species_tax_rel_ab_12CE
 
-summarize_taxa.py -i tk_12WCE.biom -L 7  -o ./species_tax_counts_12CE
+summarize_taxa.py -i tk_16WCE.biom -L 7  -o ./species_tax_rel_ab_16CE
 
-summarize_taxa.py -i tk_16WCE.biom -L 7  -o ./species_tax_counts_13CE
+#IL_summarize taxa (species level)
+summarize_taxa.py -i tk_01WIL.biom -L 7  -o ./species_tax_rel_ab_01IL
+
+summarize_taxa.py -i tk_03WIL.biom -L 7  -o ./species_tax_rel_ab_03IL
+
+summarize_taxa.py -i tk_05WIL.biom -L 7  -o ./species_tax_rel_ab_05IL
+
+summarize_taxa.py -i tk_08WIL.biom -L 7  -o ./species_tax_rel_ab_08IL
+
+summarize_taxa.py -i tk_12WIL.biom -L 7  -o ./species_tax_rel_ab_12IL
+
+summarize_taxa.py -i tk_16WIL.biom -L 7  -o ./species_tax_rel_ab_16IL
+
+#SW_summarize taxa (species level)
+summarize_taxa.py -i tk_01WSW.biom -L 7  -o ./species_tax_rel_ab_01SW
+
+summarize_taxa.py -i tk_03WSW.biom -L 7  -o ./species_tax_rel_ab_03SW
+
+summarize_taxa.py -i tk_05WSW.biom -L 7  -o ./species_tax_rel_ab_05SW
+
+summarize_taxa.py -i tk_08WSW.biom -L 7  -o ./species_tax_rel_ab_08SW
+
+summarize_taxa.py -i tk_12WSW.biom -L 7  -o ./species_tax_rel_ab_12SW
+
+summarize_taxa.py -i tk_16WSW.biom -L 7  -o ./species_tax_rel_ab_16SW
+
+#TW_summarize taxa (species level)
+summarize_taxa.py -i tk_01WTW.biom -L 7  -o ./species_tax_rel_ab_01TW
+
+summarize_taxa.py -i tk_03WTW.biom -L 7  -o ./species_tax_rel_ab_03TW
+
+summarize_taxa.py -i tk_05WTW.biom -L 7  -o ./species_tax_rel_ab_05TW
+
+summarize_taxa.py -i tk_08WTW.biom -L 7  -o ./species_tax_rel_ab_08TW
+
+summarize_taxa.py -i tk_12WTW.biom -L 7  -o ./species_tax_rel_ab_12TW
+
+summarize_taxa.py -i tk_16WTW.biom -L 7  -o ./species_tax_rel_ab_16TW
+
+[16. Compute core microbiome
+
+#CE_core
+compute_core_microbiome.py -i tk_01WCE.biom -o otu_table_core_01WTK_CE 
+biom convert -i core_table_100.biom -o core_table_100.txt --to-tsv #quality check
+
+compute_core_microbiome.py -i tk_03WCE.biom -o otu_table_core_03WTK_CE 
+
+compute_core_microbiome.py -i tk_05WCE.biom -o otu_table_core_05WTK_CE 
+
+compute_core_microbiome.py -i tk_08WCE.biom -o otu_table_core_08WTK_CE 
+
+compute_core_microbiome.py -i tk_12WCE.biom -o otu_table_core_12WTK_CE 
+
+compute_core_microbiome.py -i tk_16WCE.biom -o otu_table_core_16WTK_CE 
 
 
-summarize_taxa.py -i ck_TW_36W.biom -L 7  -o ./tax_counts_36TW
+#IL_core
+compute_core_microbiome.py -i tk_01WIL.biom -o otu_table_core_01WTK_IL
 
-summarize_taxa.py -i ck_TW_51W.biom -L 7  -o ./tax_counts_51TW
+compute_core_microbiome.py -i tk_03WIL.biom -o otu_table_core_03WTK_IL
 
-#through plots:  
+compute_core_microbiome.py -i tk_05WIL.biom -o otu_table_core_05WTK_IL
 
-summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank.biom -o tk_all_taxa_summary -c Tissue -m tk_mapping_corrected.txt
+compute_core_microbiome.py -i tk_08WIL.biom -o otu_table_core_08WTK_IL
 
-summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank_CE.biom -o CE_Group/ -f -s -c Age -m tk_mapping_corrected.txt 
+compute_core_microbiome.py -i tk_12WIL.biom -o otu_table_core_12WTK_IL 
 
-summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank_IL.biom -o IL_Group/ -f -s -c Age -m tk_mapping_corrected.txt 
+compute_core_microbiome.py -i tk_16WIL.biom -o otu_table_core_16WTK_IL 
 
-summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank_TW.biom -o TW_Group/ -f -s -c Age -m tk_mapping_corrected.txt 
+#SW_core
+compute_core_microbiome.py -i tk_01WSW.biom -o otu_table_core_01WTK_SW
 
-summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank_SW.biom -o SW_Group/ -f -s -c Age -m tk_mapping_corrected.txt 
+compute_core_microbiome.py -i tk_03WSW.biom -o otu_table_core_03WTK_SW
 
-summarize_taxa_through_plots.py -i ck_TT.biom -o TT_Group/ -f -s -c Age -m ck_mapping_corrected.txt 
+compute_core_microbiome.py -i tk_05WSW.biom -o otu_table_core_05WTK_SW
+
+compute_core_microbiome.py -i tk_08WSW.biom -o otu_table_core_08WTK_SW
+
+compute_core_microbiome.py -i tk_12WSW.biom -o otu_table_core_12WTK_SW 
+
+compute_core_microbiome.py -i tk_16WSW.biom -o otu_table_core_16WTK_SW 
+
+#TW_core
+compute_core_microbiome.py -i tk_01WTW.biom -o otu_table_core_01WTK_TW
+
+compute_core_microbiome.py -i tk_03WTW.biom -o otu_table_core_03WTK_TW
+
+compute_core_microbiome.py -i tk_05WTW.biom -o otu_table_core_05WTK_TW
+
+compute_core_microbiome.py -i tk_08WTW.biom -o otu_table_core_08WTK_TW
+
+compute_core_microbiome.py -i tk_12WTW.biom -o otu_table_core_12WTK_TW 
+
+compute_core_microbiome.py -i tk_16WTW.biom -o otu_table_core_16WTK_TW 
 
 
 
 
-
-[16.] Determine number of reads per sample for rarefaction:
+16. Determine number of reads per sample for rarefaction:
 biom summarize-table -i ck_CE.biom -o biom_summary_ck_CE.txt
 
 biom summarize-table -i ck_IL.biom -o biom_summary_ck_IL.txt
@@ -271,7 +349,7 @@ biom summarize-table -i ck_TT.biom -o biom_summary_ck_TT.txt
 biom summarize-table -i otu_table_taxa_filtered_no_less_than_25.biom -o biom_summary_orig.txt
 
 
-[17.] Rareify to appropriate number:
+17. Rareify to appropriate number:
 #Example -> single_rarefaction.py -i reo.biom -o reo_rare5000.biom -d 5000
 
 single_rarefaction.py -i ck_CE.biom -o ck_CE_rare9420.biom -d 9420
