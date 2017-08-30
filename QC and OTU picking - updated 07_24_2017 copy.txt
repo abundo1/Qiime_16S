@@ -144,32 +144,107 @@ NOTE: It is not necessary to generate tissue-specific biom tables and mapping fi
 [14.] 
 
 14a Validate mapping file 
-validate_mapping_file.py -m     tk_mapping.txt -o Validated_tk_mapping
+validate_mapping_file.py -m mapping6.txt -o Validated_tk_mapping6
 
 
 [14.b] #Filter biom table to generate tissue using tissue-specific mapping file
 
-filter_samples_from_otu_table.py -i otu_table.biom -o ck_CE.biom -m ck_mapping_corrected.txt -s 'Tissue:CE'
+#by tissue
 
-filter_samples_from_otu_table.py -i otu_table.biom -o ck_IL.biom -m ck_mapping_corrected.txt -s 'Tissue:IL'
+filter_samples_from_otu_table.py -i otu_table_taxa_filtered_no_blank_nless25.biom -o tk_CE.biom -m mapping6_corrected.txt -s 'Tissue:CE'
 
-filter_samples_from_otu_table.py -i otu_table.biom -o ck_TW.biom -m ck_mapping_corrected.txt -s 'Tissue:TW'
+filter_samples_from_otu_table.py -i otu_table_taxa_filtered_no_blank_nless25.biom -o tk_IL.biom -m mapping6_corrected.txt -s 'Tissue:IL'
 
-filter_samples_from_otu_table.py -i otu_table.biom -o ck_SW.biom -m ck_mapping_corrected.txt -s 'Tissue:SW'
+filter_samples_from_otu_table.py -i otu_table_taxa_filtered_no_blank_nless25.biom -o tk_TW.biom -m mapping6_corrected.txt -s 'Tissue:TW'
 
-filter_samples_from_otu_table.py -i otu_table.biom -o ck_TT.biom -m ck_mapping_corrected.txt -s 'Tissue:TT' 
+filter_samples_from_otu_table.py -i otu_table_taxa_filtered_no_blank_nless25.biom -o tk_SW.biom -m mapping6_corrected.txt -s 'Tissue:SW'
+
+#by age 
+#CE
+filter_samples_from_otu_table.py -i tk_CE.biom -o tk_01WCE.biom -m mapping6_corrected.txt -s 'Age:01W'
+
+filter_samples_from_otu_table.py -i tk_CE.biom -o tk_03WCE.biom -m mapping6_corrected.txt -s 'Age:03W'
+
+filter_samples_from_otu_table.py -i tk_CE.biom -o tk_05WCE.biom -m mapping6_corrected.txt -s 'Age:05W'
+
+filter_samples_from_otu_table.py -i tk_CE.biom -o tk_08WCE.biom -m mapping6_corrected.txt -s 'Age:08W'
+
+filter_samples_from_otu_table.py -i tk_CE.biom -o tk_12WCE.biom -m mapping6_corrected.txt -s 'Age:12W'
+
+filter_samples_from_otu_table.py -i tk_CE.biom -o tk_16WCE.biom -m mapping6_corrected.txt -s 'Age:16W'
+
+#IL
+filter_samples_from_otu_table.py -i tk_IL.biom -o tk_01WIL.biom -m mapping6_corrected.txt -s 'Age:01W'
+
+filter_samples_from_otu_table.py -i tk_IL.biom -o tk_03WIL.biom -m mapping6_corrected.txt -s 'Age:03W'
+
+filter_samples_from_otu_table.py -i tk_IL.biom -o tk_05WIL.biom -m mapping6_corrected.txt -s 'Age:05W'
+
+filter_samples_from_otu_table.py -i tk_IL.biom -o tk_08WIL.biom -m mapping6_corrected.txt -s 'Age:08W'
+
+filter_samples_from_otu_table.py -i tk_IL.biom -o tk_12WIL.biom -m mapping6_corrected.txt -s 'Age:12W'
+
+filter_samples_from_otu_table.py -i tk_IL.biom -o tk_16WIL.biom -m mapping6_corrected.txt -s 'Age:16W'
+
+#SW
+filter_samples_from_otu_table.py -i tk_SW.biom -o tk_01WSW.biom -m mapping6_corrected.txt -s 'Age:01W'
+
+filter_samples_from_otu_table.py -i tk_SW.biom -o tk_03WSW.biom -m mapping6_corrected.txt -s 'Age:03W'
+
+filter_samples_from_otu_table.py -i tk_SW.biom -o tk_05WSW.biom -m mapping6_corrected.txt -s 'Age:05W'
+
+filter_samples_from_otu_table.py -i tk_SW.biom -o tk_08WSW.biom -m mapping6_corrected.txt -s 'Age:08W'
+
+filter_samples_from_otu_table.py -i tk_SW.biom -o tk_12WSW.biom -m mapping6_corrected.txt -s 'Age:12W'
+
+filter_samples_from_otu_table.py -i tk_SW.biom -o tk_16WSW.biom -m mapping6_corrected.txt -s 'Age:16W'
+
+#TW
+filter_samples_from_otu_table.py -i tk_TW.biom -o tk_01WTW.biom -m mapping6_corrected.txt -s 'Age:01W'
+
+filter_samples_from_otu_table.py -i tk_TW.biom -o tk_03WTW.biom -m mapping6_corrected.txt -s 'Age:03W'
+
+filter_samples_from_otu_table.py -i tk_TW.biom -o tk_05WTW.biom -m mapping6_corrected.txt -s 'Age:05W'
+
+filter_samples_from_otu_table.py -i tk_TW.biom -o tk_08WTW.biom -m mapping6_corrected.txt -s 'Age:08W'
+
+filter_samples_from_otu_table.py -i tk_TW.biom -o tk_12WTW.biom -m mapping6_corrected.txt -s 'Age:12W'
+
+filter_samples_from_otu_table.py -i tk_TW.biom -o tk_16WTW.biom -m mapping6_corrected.txt -s 'Age:16W'
 
 
 
 [14.c] #Did the filter work?
-biom convert -i ck_CE.biom -o ck_CE_from_biom.txt --to-tsv
+biom convert -i tk_CE.biom -o tk_CE_from_biom.txt --to-tsv
 ----
 
-[15.] Summarize taxa through plots:  
-#example
+[15.] Summarize taxa 
+# summarize taxa (species level)
+#CE_summarize taxa (species level)
+
+summarize_taxa.py -i tk_01WCE.biom -L 7  -o ./species_tax_counts_01CE
+
+summarize_taxa.py -i tk_03WCE.biom -L 7  -o ./species_tax_counts_03CE
+
+summarize_taxa.py -i tk_05WCE.biom -L 7  -o ./species_tax_counts_05CE
+
+summarize_taxa.py -i tk_08WCE.biom -L 7  -o ./species_tax_counts_08CE
+
+summarize_taxa.py -i tk_12WCE.biom -L 7  -o ./species_tax_counts_12CE
+
+summarize_taxa.py -i tk_16WCE.biom -L 7  -o ./species_tax_counts_13CE
+
+
+summarize_taxa.py -i ck_TW_36W.biom -L 7  -o ./tax_counts_36TW
+
+summarize_taxa.py -i ck_TW_51W.biom -L 7  -o ./tax_counts_51TW
+
+#through plots:  
+
 summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank.biom -o tk_all_taxa_summary -c Tissue -m tk_mapping_corrected.txt
 
 summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank_CE.biom -o CE_Group/ -f -s -c Age -m tk_mapping_corrected.txt 
+
 summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank_IL.biom -o IL_Group/ -f -s -c Age -m tk_mapping_corrected.txt 
 
 summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank_TW.biom -o TW_Group/ -f -s -c Age -m tk_mapping_corrected.txt 
@@ -177,6 +252,9 @@ summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank_TW.biom -o T
 summarize_taxa_through_plots.py -i otu_table_taxa_filtered_no_blank_SW.biom -o SW_Group/ -f -s -c Age -m tk_mapping_corrected.txt 
 
 summarize_taxa_through_plots.py -i ck_TT.biom -o TT_Group/ -f -s -c Age -m ck_mapping_corrected.txt 
+
+
+
 
 
 [16.] Determine number of reads per sample for rarefaction:
