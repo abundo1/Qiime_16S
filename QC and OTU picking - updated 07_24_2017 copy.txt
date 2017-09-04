@@ -135,6 +135,10 @@ filter_otus_from_otu_table.py -i otu_table_taxa_filtered_no_blank_nless25.biom -
 [13.a] Did the biom table work?
 biom summarize-table -i otu_table_taxa_filtered_no_blank.biom -o biom_summary_tk_all_nless_25.txt
 
+biom convert -i otu_table_taxa_filtered_no_blank_nless25.biom -o otu_table_taxa_filtered_no_blank_nless25_biom.txt --to-tsv
+
+biom convert -i otu_table_taxa_filtered_no_blank_nless25.biom -o otu_table_taxa_filtered_no_blank_nless25_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
 
 ----
 NOTE: It is not necessary to generate tissue-specific biom tables and mapping files if analysis are done following the "Bioconductor workflow for microbiome" in R
@@ -188,6 +192,8 @@ filter_samples_from_otu_table.py -i tk_IL.biom -o tk_16WIL.biom -m mapping6_corr
 
 #SW
 filter_samples_from_otu_table.py -i tk_SW.biom -o tk_01WSW.biom -m mapping6_corrected.txt -s 'Age:01W'
+biom convert -i tk_01WSW.biom -o tk_01WSW_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+biom convert -i tk_01WSW.biom -o tk_01WSW_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
 
 filter_samples_from_otu_table.py -i tk_SW.biom -o tk_03WSW.biom -m mapping6_corrected.txt -s 'Age:03W'
 
@@ -252,6 +258,7 @@ summarize_taxa.py -i tk_16WIL.biom -L 7  -o ./species_tax_rel_ab_16IL
 
 #SW_summarize taxa (species level)
 summarize_taxa.py -i tk_01WSW.biom -L 7  -o ./species_tax_rel_ab_01SW
+biom convert -i tk_01WSW_L7.biom -o tk_01WSW_L7_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
 
 summarize_taxa.py -i tk_03WSW.biom -L 7  -o ./species_tax_rel_ab_03SW
 
