@@ -100,6 +100,65 @@ filter_samples_from_otu_table.py -i otu_table.biom -o ck_TT.biom -m ck_mapping_c
 
 filter_samples_from_otu_table.py -i otu_table.biom -o ck_CE.biom -m ck_mapping_corrected.txt -s 'Tissue:CE'
 
+#CE_biom_table_filter with age
+
+filter_samples_from_otu_table.py -i ck_CE.biom -o ck_CE_01W.biom -m ck_mapping_corrected.txt -s 'Age:01W'
+
+filter_samples_from_otu_table.py -i ck_CE.biom -o ck_CE_03W.biom -m ck_mapping_corrected.txt -s 'Age:03W'
+
+filter_samples_from_otu_table.py -i ck_CE.biom -o ck_CE_05W.biom -m ck_mapping_corrected.txt -s 'Age:05W'
+
+filter_samples_from_otu_table.py -i ck_CE.biom -o ck_CE_08W.biom -m ck_mapping_corrected.txt -s 'Age:08W'
+
+filter_samples_from_otu_table.py -i ck_CE.biom -o ck_CE_12W.biom -m ck_mapping_corrected.txt -s 'Age:12W'
+
+filter_samples_from_otu_table.py -i ck_CE.biom -o ck_CE_16W.biom -m ck_mapping_corrected.txt -s 'Age:16W'
+
+filter_samples_from_otu_table.py -i ck_CE.biom -o ck_CE_25W.biom -m ck_mapping_corrected.txt -s 'Age:25W'
+
+filter_samples_from_otu_table.py -i ck_CE.biom -o ck_CE_36W.biom -m ck_mapping_corrected.txt -s 'Age:36W'
+
+filter_samples_from_otu_table.py -i ck_CE.biom -o ck_CE_51W.biom -m ck_mapping_corrected.txt -s 'Age:51W'
+
+#IL_biom_table_filter with age
+
+filter_samples_from_otu_table.py -i ck_IL.biom -o ck_IL_01W.biom -m ck_mapping_corrected.txt -s 'Age:01W'
+
+filter_samples_from_otu_table.py -i ck_IL.biom -o ck_IL_03W.biom -m ck_mapping_corrected.txt -s 'Age:03W'
+
+filter_samples_from_otu_table.py -i ck_IL.biom -o ck_IL_05W.biom -m ck_mapping_corrected.txt -s 'Age:05W'
+
+filter_samples_from_otu_table.py -i ck_IL.biom -o ck_IL_08W.biom -m ck_mapping_corrected.txt -s 'Age:08W'
+
+filter_samples_from_otu_table.py -i ck_IL.biom -o ck_IL_12W.biom -m ck_mapping_corrected.txt -s 'Age:12W'
+
+filter_samples_from_otu_table.py -i ck_IL.biom -o ck_IL_16W.biom -m ck_mapping_corrected.txt -s 'Age:16W'
+
+filter_samples_from_otu_table.py -i ck_IL.biom -o ck_IL_25W.biom -m ck_mapping_corrected.txt -s 'Age:25W'
+
+filter_samples_from_otu_table.py -i ck_IL.biom -o ck_IL_36W.biom -m ck_mapping_corrected.txt -s 'Age:36W'
+
+filter_samples_from_otu_table.py -i ck_IL.biom -o ck_IL_51W.biom -m ck_mapping_corrected.txt -s 'Age:51W'
+
+#SW_biom_table_filter with age
+
+filter_samples_from_otu_table.py -i ck_SW.biom -o ck_SW_01W.biom -m ck_mapping_corrected.txt -s 'Age:01W'
+
+filter_samples_from_otu_table.py -i ck_SW.biom -o ck_SW_03W.biom -m ck_mapping_corrected.txt -s 'Age:03W'
+
+filter_samples_from_otu_table.py -i ck_SW.biom -o ck_SW_05W.biom -m ck_mapping_corrected.txt -s 'Age:05W'
+
+filter_samples_from_otu_table.py -i ck_SW.biom -o ck_SW_08W.biom -m ck_mapping_corrected.txt -s 'Age:08W'
+
+filter_samples_from_otu_table.py -i ck_SW.biom -o ck_SW_12W.biom -m ck_mapping_corrected.txt -s 'Age:12W'
+
+filter_samples_from_otu_table.py -i ck_SW.biom -o ck_SW_16W.biom -m ck_mapping_corrected.txt -s 'Age:16W'
+
+filter_samples_from_otu_table.py -i ck_SW.biom -o ck_SW_25W.biom -m ck_mapping_corrected.txt -s 'Age:25W'
+
+filter_samples_from_otu_table.py -i ck_SW.biom -o ck_SW_36W.biom -m ck_mapping_corrected.txt -s 'Age:36W'
+
+filter_samples_from_otu_table.py -i ck_SW.biom -o ck_SW_51W.biom -m ck_mapping_corrected.txt -s 'Age:51W'
 
 #TW_biom_table_filter with age
 
@@ -121,15 +180,133 @@ filter_samples_from_otu_table.py -i ck_TW.biom -o ck_TW_36W.biom -m ck_mapping_c
 
 filter_samples_from_otu_table.py -i ck_TW.biom -o ck_TW_51W.biom -m ck_mapping_corrected.txt -s 'Age:51W'
 
-# summarize taxa (species level)
+#CONVERT .biom TO .txt WITH TAXONOMY HEADER
 
-summarize_taxa.py -i ck_TW_25W.biom -L 7  -o ./tax_counts_25TW
+#CE
+biom convert -i ck_CE_01W.biom  -o ck_CE_01W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
 
-summarize_taxa.py -i ck_TW_36W.biom -L 7  -o ./tax_counts_36TW
+biom convert -i ck_CE_03W.biom  -o ck_CE_03W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
 
-summarize_taxa.py -i ck_TW_51W.biom -L 7  -o ./tax_counts_51TW
+biom convert -i ck_CE_05W.biom  -o ck_CE_05W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
 
-#core_microbiome
+biom convert -i ck_CE_08W.biom  -o ck_CE_08W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_CE_12W.biom  -o ck_CE_12W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_CE_16W.biom  -o ck_CE_16W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_CE_25W.biom  -o ck_CE_25W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_CE_36W.biom  -o ck_CE_36W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_CE_51W.biom  -o ck_CE_51W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+#IL
+biom convert -i ck_IL_01W.biom  -o ck_IL_01W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_IL_03W.biom  -o ck_IL_03W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_IL_05W.biom  -o ck_IL_05W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_IL_08W.biom  -o ck_IL_08W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_IL_12W.biom  -o ck_IL_12W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_IL_16W.biom  -o ck_IL_16W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_IL_25W.biom  -o ck_IL_25W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_IL_36W.biom  -o ck_IL_36W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_IL_51W.biom  -o ck_IL_51W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+#SW
+
+biom convert -i ck_SW_01W.biom  -o ck_SW_01W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_SW_03W.biom  -o ck_SW_03W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_SW_05W.biom  -o ck_SW_05W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_SW_08W.biom  -o ck_SW_08W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_SW_12W.biom  -o ck_SW_12W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_SW_16W.biom  -o ck_SW_16W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_SW_25W.biom  -o ck_SW_25W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_SW_36W.biom  -o ck_SW_36W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_SW_51W.biom  -o ck_SW_51W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+
+#TW
+
+biom convert -i ck_TW_01W.biom  -o ck_TW_01W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_TW_03W.biom  -o ck_TW_03W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_TW_05W.biom  -o ck_TW_05W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_TW_08W.biom  -o ck_TW_08W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_TW_12W.biom  -o ck_TW_12W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_TW_16W.biom  -o ck_TW_16W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_TW_25W.biom  -o ck_TW_25W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_TW_36W.biom  -o ck_TW_36W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+biom convert -i ck_TW_51W.biom  -o ck_TW_51W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+#CORE_MICROBIOME
+
+#CE
+compute_core_microbiome.py -i ck_CE_01W.biom -o otu_table_core_ck_CE_01W
+
+compute_core_microbiome.py -i ck_CE_03W.biom -o otu_table_core_ck_CE_031W
+
+compute_core_microbiome.py -i ck_CE_05W.biom -o otu_table_core_ck_CE_05W
+
+compute_core_microbiome.py -i ck_CE_08W.biom -o otu_table_core_ck_CE_08W
+
+compute_core_microbiome.py -i ck_CE_12W.biom -o otu_table_core_ck_CE_12W
+
+compute_core_microbiome.py -i ck_CE_16W.biom -o otu_table_core_ck_CE_16W
+
+compute_core_microbiome.py -i ck_CE_25W.biom -o otu_table_core_ck_CE_25W
+
+compute_core_microbiome.py -i ck_CE_36W.biom -o otu_table_core_ck_CE_36W
+
+compute_core_microbiome.py -i ck_CE_51W.biom -o otu_table_core_ck_CE_51W
+
+#IL
+compute_core_microbiome.py -i ck_IL_01W.biom -o otu_table_core_ck_IL_01W
+
+compute_core_microbiome.py -i ck_IL_03W.biom -o otu_table_core_ck_IL_01W
+
+compute_core_microbiome.py -i ck_IL_05W.biom -o otu_table_core_ck_IL_01W
+
+compute_core_microbiome.py -i ck_IL_08W.biom -o otu_table_core_ck_IL_01W
+
+compute_core_microbiome.py -i ck_IL_12W.biom -o otu_table_core_ck_IL_01W
+
+compute_core_microbiome.py -i ck_IL_16W.biom -o otu_table_core_ck_IL_01W
+
+compute_core_microbiome.py -i ck_IL_25W.biom -o otu_table_core_ck_IL_01W
+
+compute_core_microbiome.py -i ck_IL_36W.biom -o otu_table_core_ck_IL_01W
+
+compute_core_microbiome.py -i ck_IL_51W.biom -o otu_table_core_ck_IL_01W
+
+#SW
+#TW
+compute_core_microbiome.py -i ck_TW_36W.biom -o otu_table_core_25W_CK_TW --valid_states "AgeTissue:36WTW"
+
+compute_core_microbiome.py -i ck_TW_51W.biom -o otu_table_core_51W_CK_TW --valid_states "AgeTissue:51WTW"
+
 
 compute_core_microbiome.py -i ck_TW_51W.biom -o otu_table_core_51W_CK_TW --valid_states "AgeTissue:51WTW"
 
@@ -138,6 +315,18 @@ compute_core_microbiome.py -i ck_TW_25W.biom -o otu_table_core_36W_CK_TW --valid
 compute_core_microbiome.py -i ck_TW_36W.biom -o otu_table_core_25W_CK_TW --valid_states "AgeTissue:36WTW"
 
  
+
+
+
+# summarize taxa (species level)
+
+summarize_taxa.py -i ck_TW_25W.biom -L 7  -o ./tax_counts_25TW
+
+summarize_taxa.py -i ck_TW_36W.biom -L 7  -o ./tax_counts_36TW
+
+summarize_taxa.py -i ck_TW_51W.biom -L 7  -o ./tax_counts_51TW
+
+
 
 
 
