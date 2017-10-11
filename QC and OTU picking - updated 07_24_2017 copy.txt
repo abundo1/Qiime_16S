@@ -84,6 +84,8 @@ NOTE: It is not necessary to generate tissue-specific biom tables and mapping fi
 validate_mapping_file.py -m     ck_mapping.txt -o Validated_ck_mapping
 
 
+summarize_taxa.py -i ck_CE_01W.biom -L 2  -o ./species_tax_rel_ab_01CE
+
 [14.b] #Filter biom table to generate tissue using tissue-specific mapping file
 
 filter_samples_from_otu_table.py -i otu_table.biom -o ck_CE.biom -m ck_mapping_corrected.txt -s 'Tissue:CE'
