@@ -448,6 +448,33 @@ compute_core_microbiome.py -i ck_TW.biom -o otu_table_core_36CK_IL  --valid_stat
 
 compute_core_microbiome.py -i ck_TW.biom -o otu_table_core_51CK_IL  --valid_states "AgeTissue:51WTW"
 
+
+
+
+
+# CORE DIVERSITY
+--CORE DIVERSITY (EXAMPLE)-------------------
+core_diversity_analyses.py -i $PWD/otu_table_taxa_filtered_no_less_than_25.biom -o $PWD/core_output_ck_tk -m $PWD/ck_tk_mapping_updated_082017_corrected.txt -c Bird_Type -t $PWD/rep_set.tre -e 1500
+core_diversity_analyses.py -i $PWD/tk_ck_SW.biom -o $PWD/core_output_ck_tk_sw -m $PWD/ck_tk_mapping_updated_082017_corrected.txt -c Bird_Type -t $PWD/rep_set.tre -e 10000
+core_diversity_analyses.py -i $PWD/tk_ck_TW.biom -o $PWD/core_output_ck_tk_TW -m $PWD/ck_tk_mapping_updated_082017_corrected.txt -c Bird_Type -t $PWD/rep_set.tre -e 1000
+core_diversity_analyses.py -i $PWD/tk_ck_IL.biom -o $PWD/core_output_ck_tk_IL -m $PWD/ck_tk_mapping_updated_082017_corrected.txt -c Bird_Type -t $PWD/rep_set.tre -e 1000
+core_diversity_analyses.py -i $PWD/tk_ck_CE.biom -o $PWD/core_output_ck_tk_CE -m $PWD/ck_tk_mapping_updated_082017_corrected.txt -c Bird_Type -t $PWD/rep_set.tre -e 10000
+
+--CORE DIVERSITY-------------------
+core_diversity_analyses.py -i $PWD/otu_table_taxa_filtered_no_less_than_25.biom -o $PWD/core_output_ck_tk -m $PWD/ck_tk_mapping_updated_082017_corrected.txt -c Bird_Type -t $PWD/rep_set.tre -e 1500
+core_diversity_analyses.py -i $PWD/tk_ck_SW.biom -o $PWD/core_output_ck_tk_sw -m $PWD/ck_tk_mapping_updated_082017_corrected.txt -c Bird_Type -t $PWD/rep_set.tre -e 10000
+core_diversity_analyses.py -i $PWD/tk_ck_TW.biom -o $PWD/core_output_ck_tk_TW -m $PWD/ck_tk_mapping_updated_082017_corrected.txt -c Bird_Type -t $PWD/rep_set.tre -e 1000
+core_diversity_analyses.py -i $PWD/tk_ck_IL.biom -o $PWD/core_output_ck_tk_IL -m $PWD/ck_tk_mapping_updated_082017_corrected.txt -c Bird_Type -t $PWD/rep_set.tre -e 1000
+
+core_diversity_analyses.py -i ck_CE.biom -o core_output_ck_CE -m ck_mapping_corrected.txt -c Age -t rep_set.tre -e 9420
+core_diversity_analyses.py -i ck_IL.biom -o core_output_ck_IL -m ck_mapping_corrected.txt -c Age -t rep_set.tre -e 1043
+
+core_diversity_analyses.py -i ck_SW.biom -o core_output_ck_SW -m ck_mapping_corrected.txt -c Age -t rep_set.tre -e 9420
+
+core_diversity_analyses.py -i ck_TW.biom -o core_output_ck_TW -m ck_mapping_corrected.txt -c Age -t rep_set.tre -e 6257
+
+
+
 [18] # Estimates the observation (e.g., OTU) richness of samples in a BIOM table
 
 estimate_observation_richness.py -i ck_CE.biom -o estimates_out_ckCE
