@@ -304,19 +304,44 @@ compute_core_microbiome.py -i ck_IL_36W.biom -o otu_table_core_ck_IL_01W
 compute_core_microbiome.py -i ck_IL_51W.biom -o otu_table_core_ck_IL_01W
 
 #SW
+
+compute_core_microbiome.py -i ck_SW_01W.biom -o otu_table_core_ck_SW_01W
+
+compute_core_microbiome.py -i ck_SW_03W.biom -o otu_table_core_ck_SW_03W
+
+compute_core_microbiome.py -i ck_SW_05W.biom -o otu_table_core_ck_SW_05W
+
+compute_core_microbiome.py -i ck_SW_08W.biom -o otu_table_core_ck_SW_08W
+
+compute_core_microbiome.py -i ck_SW_12W.biom -o otu_table_core_ck_SW_12W
+
+compute_core_microbiome.py -i ck_SW_16W.biom -o otu_table_core_ck_SW_16W
+
+compute_core_microbiome.py -i ck_SW_25W.biom -o otu_table_core_ck_SW_25W
+
+compute_core_microbiome.py -i ck_SW_36W.biom -o otu_table_core_ck_SW_36W
+
+compute_core_microbiome.py -i ck_SW_51W.biom -o otu_table_core_ck_SW_51W
+
 #TW
-compute_core_microbiome.py -i ck_TW_36W.biom -o otu_table_core_25W_CK_TW --valid_states "AgeTissue:36WTW"
 
-compute_core_microbiome.py -i ck_TW_51W.biom -o otu_table_core_51W_CK_TW --valid_states "AgeTissue:51WTW"
+compute_core_microbiome.py -i ck_TW_01W.biom -o otu_table_core_ck_TW_01W
 
+compute_core_microbiome.py -i ck_TW_03W.biom -o otu_table_core_ck_TW_03W
 
-compute_core_microbiome.py -i ck_TW_51W.biom -o otu_table_core_51W_CK_TW --valid_states "AgeTissue:51WTW"
+compute_core_microbiome.py -i ck_TW_05W.biom -o otu_table_core_ck_TW_05W
 
-compute_core_microbiome.py -i ck_TW_25W.biom -o otu_table_core_36W_CK_TW --valid_states "AgeTissue:25WTW"
+compute_core_microbiome.py -i ck_TW_08W.biom -o otu_table_core_ck_TW_08W
 
-compute_core_microbiome.py -i ck_TW_36W.biom -o otu_table_core_25W_CK_TW --valid_states "AgeTissue:36WTW"
+compute_core_microbiome.py -i ck_TW_12W.biom -o otu_table_core_ck_TW_12W
 
- 
+compute_core_microbiome.py -i ck_TW_16W.biom -o otu_table_core_ck_TW_16W
+
+compute_core_microbiome.py -i ck_TW_25W.biom -o otu_table_core_ck_TW_25W
+
+compute_core_microbiome.py -i ck_TW_36W.biom -o otu_table_core_ck_TW_36W
+
+compute_core_microbiome.py -i ck_TW_51W.biom -o otu_table_core_ck_TW_51W
 
 
 
