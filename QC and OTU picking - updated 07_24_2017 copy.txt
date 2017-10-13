@@ -305,6 +305,8 @@ compute_core_microbiome.py -i ck_IL_51W.biom -o otu_table_core_ck_IL_01W
 
 #SW
 
+compute_core_microbiome.py -i ck_SW.biom -o otu_table_core_ck_SW
+
 compute_core_microbiome.py -i ck_SW_01W.biom -o otu_table_core_ck_SW_01W
 
 compute_core_microbiome.py -i ck_SW_03W.biom -o otu_table_core_ck_SW_03W
@@ -324,7 +326,7 @@ compute_core_microbiome.py -i ck_SW_36W.biom -o otu_table_core_ck_SW_36W
 compute_core_microbiome.py -i ck_SW_51W.biom -o otu_table_core_ck_SW_51W
 
 #TW
-
+compute_core_microbiome.py -i ck_TW.biom -o otu_table_core_ck_TW
 compute_core_microbiome.py -i ck_TW_01W.biom -o otu_table_core_ck_TW_01W
 
 compute_core_microbiome.py -i ck_TW_03W.biom -o otu_table_core_ck_TW_03W
