@@ -182,6 +182,10 @@ filter_samples_from_otu_table.py -i ck_TW.biom -o ck_TW_36W.biom -m ck_mapping_c
 
 filter_samples_from_otu_table.py -i ck_TW.biom -o ck_TW_51W.biom -m ck_mapping_corrected.txt -s 'Age:51W'
 
+#SW_biom_table_filter with sequences
+
+filter_samples_from_otu_table.py -i ck_SW.biom -o filtered_ck_SW_.biom --sample_id_fp ids.txt --negate_sample_id_fp
+
 #CONVERT .biom TO .txt WITH TAXONOMY HEADER
 
 #CE
