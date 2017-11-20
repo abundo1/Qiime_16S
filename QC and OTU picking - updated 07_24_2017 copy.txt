@@ -269,6 +269,29 @@ biom convert -i ck_TW_51W.biom  -o ck_TW_51W_biom_withtaxonomy.txt --to-tsv --he
 
 #CORE_MICROBIOME
 
+#3-51WK
+filter_samples_from_otu_table.py -i ck_SW.biom -o ck_SW_03-51WK.biom -m ckSW_core_3-51WK_corrected.txt -s 'Core:Y'
+biom convert -i ck_SW_03-51WK.biom   -o ck_SW_03-51WKbiom_withtaxonomy.txt --to-tsv --header-key taxonomy
+compute_core_microbiome.py -i ck_SW_03-51WK.biom -o otu_table_core_ck_SW_03-51WK
+
+#5-51WK
+validate_mapping_file.py -m ckSW_mapping_file_core_5-51WK.txt -o Validated_ck_mapping_5-51WK
+filter_samples_from_otu_table.py -i ck_SW.biom -o ck_SW_03-51WK.biom -m ckSW_core_3-51WK_corrected.txt -s 'Core:Y'
+biom convert -i ck_SW_03-51WK.biom   -o ck_SW_03-51WKbiom_withtaxonomy.txt --to-tsv --header-key taxonomy
+compute_core_microbiome.py -i ck_SW_03-51WK.biom -o otu_table_core_ck_SW_03-51WK
+
+
+
+#8-51WK
+#12-51WK
+#16-51WK
+#25-51WK
+#36-51WK
+#51WK
+
+
+
+#All
 #CE
 compute_core_microbiome.py -i ck_CE_01W.biom -o otu_table_core_ck_CE_01W
 
@@ -442,6 +465,7 @@ compute_core_microbiome.py -i ck_IL.biom -o otu_table_core_51CK_IL  --valid_stat
 
 #ck_SW
 compute_core_microbiome.py -i ck_SW.biom -o otu_table_core_01CK_IL  --valid_states "AgeTissue:01WSW"
+biom convert -i core_table_100.biom  -o core_table_100_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
 
 compute_core_microbiome.py -i ck_SW.biom -o otu_table_core_03CK_IL  --valid_states "AgeTissue:03WSW"
 
