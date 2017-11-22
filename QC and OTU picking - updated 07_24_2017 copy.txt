@@ -348,9 +348,9 @@ compute_core_microbiome.py -i tk_16WTW.biom -o otu_table_core_16WTK_TW
 #3-16WK
 
 validate_mapping_file.py -m tk_mapping_3-16WK.txt -o Validated_Tk_mapping_3-16WK
-filter_samples_from_otu_table.py -i k_SW.biom -o ck_SW_03-51WK.biom -m ckSW_core_3-51WK_corrected.txt -s 'Core:Y'
-biom convert -i ck_SW_03-51WK.biom   -o ck_SW_03-51WKbiom_withtaxonomy.txt --to-tsv --header-key taxonomy
-compute_core_microbiome.py -i ck_SW_03-51WK.biom -o otu_table_core_ck_SW_03-51WK
+filter_samples_from_otu_table.py -i tk_TW.biom -o tk_TW_03-51WK.biom -m tk_mapping_3-16WK_corrected.txt -s 'Core:Y'
+biom convert -i tk_TW_03-16WK.biom   -o tk_TW_03-16WKbiom_withtaxonomy.txt --to-tsv --header-key taxonomy
+compute_core_microbiome.py -i tk_TW_03-16WK.biom -o otu_table_core_tk_TW_03-16WK
 
 
 16. Determine number of reads per sample for rarefaction:
