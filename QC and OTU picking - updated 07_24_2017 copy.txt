@@ -354,28 +354,51 @@ validate_mapping_file.py -m tk_mapping_16WK.txt -o Validated_Tk_mapping_16WK
 
 
 
+filter_samples_from_otu_table.py -i tk_SW.biom -o tk_SW_03-16WK.biom -m tk_mapping_3-16WK_corrected.txt -s 'Core:Y'
+filter_samples_from_otu_table.py -i tk_SW.biom -o tk_SW_05-16WK.biom -m tk_mapping_5-16WK_corrected.txt -s 'Core:Y'
+filter_samples_from_otu_table.py -i tk_SW.biom -o tk_SW_08-16WK.biom -m tk_mapping_8-16WK_corrected.txt -s 'Core:Y'
+filter_samples_from_otu_table.py -i tk_SW.biom -o tk_SW_12-16WK.biom -m tk_mapping_12-16WK_corrected.txt -s 'Core:Y'
+filter_samples_from_otu_table.py -i tk_SW.biom -o tk_SW_16WK.biom -m tk_mapping_16WK_corrected.txt -s 'Core:Y'
+
+
+biom convert -i tk_SW_03-16WK.biom   -o tk_SW_03-16WKbiom_withtaxonomy.txt --to-tsv --header-key taxonomy
+biom convert -i tk_SW_05-16WK.biom   -o tk_SW_05-16WKbiom_withtaxonomy.txt --to-tsv --header-key taxonomy
+biom convert -i tk_SW_08-16WK.biom   -o tk_SW_08-16WKbiom_withtaxonomy.txt --to-tsv --header-key taxonomy
+biom convert -i tk_SW_12-16WK.biom   -o tk_SW_12-16WKbiom_withtaxonomy.txt --to-tsv --header-key taxonomy
+biom convert -i tk_SW_16WK.biom   -o tk_SW_16WKbiom_withtaxonomy.txt --to-tsv --header-key taxonomy
+
+compute_core_microbiome.py -i tk_SW_03-16WK.biom -o otu_table_core_tk_SW_03-16WK
+compute_core_microbiome.py -i tk_SW_05-16WK.biom -o otu_table_core_tk_SW_05-16WK
+compute_core_microbiome.py -i tk_SW_08-16WK.biom -o otu_table_core_tk_SW_08-16WK
+compute_core_microbiome.py -i tk_SW_12-16WK.biom -o otu_table_core_tk_SW_12-16WK
+compute_core_microbiome.py -i tk_SW_16WK.biom -o otu_table_core_tk_SW_16WK
+
+
+#Tracheal WASH_Dominant_Core
 
 validate_mapping_file.py -m tk_mapping_3-16WK.txt -o Validated_Tk_mapping_3-16WK
 filter_samples_from_otu_table.py -i tk_TW.biom -o tk_TW_03-51WK.biom -m tk_mapping_3-16WK_corrected.txt -s 'Core:Y'
 biom convert -i tk_TW_03-16WK.biom   -o tk_TW_03-16WKbiom_withtaxonomy.txt --to-tsv --header-key taxonomy
 compute_core_microbiome.py -i tk_TW_03-16WK.biom -o otu_table_core_tk_TW_03-16WK
 
-validate_mapping_file.py -m tk_mapping_3-16WK.txt -o Validated_Tk_mapping_3-16WK
+filter_samples_from_otu_table.py -i tk_TW.biom -o tk_TW_03-16WK.biom -m tk_mapping_3-16WK_corrected.txt -s 'Core:Y'
 filter_samples_from_otu_table.py -i tk_TW.biom -o tk_TW_05-16WK.biom -m tk_mapping_5-16WK_corrected.txt -s 'Core:Y'
 filter_samples_from_otu_table.py -i tk_TW.biom -o tk_TW_08-16WK.biom -m tk_mapping_8-16WK_corrected.txt -s 'Core:Y'
 filter_samples_from_otu_table.py -i tk_TW.biom -o tk_TW_12-16WK.biom -m tk_mapping_12-16WK_corrected.txt -s 'Core:Y'
 filter_samples_from_otu_table.py -i tk_TW.biom -o tk_TW_16WK.biom -m tk_mapping_16WK_corrected.txt -s 'Core:Y'
 
+
+biom convert -i tk_TW_03-16WK.biom   -o tk_TW_03-16WKbiom_withtaxonomy.txt --to-tsv --header-key taxonomy
 biom convert -i tk_TW_05-16WK.biom   -o tk_TW_05-16WKbiom_withtaxonomy.txt --to-tsv --header-key taxonomy
 biom convert -i tk_TW_08-16WK.biom   -o tk_TW_08-16WKbiom_withtaxonomy.txt --to-tsv --header-key taxonomy
 biom convert -i tk_TW_12-16WK.biom   -o tk_TW_12-16WKbiom_withtaxonomy.txt --to-tsv --header-key taxonomy
 biom convert -i tk_TW_16WK.biom   -o tk_TW_16WKbiom_withtaxonomy.txt --to-tsv --header-key taxonomy
 
+compute_core_microbiome.py -i tk_TW_03-16WK.biom -o otu_table_core_tk_TW_03-16WK
 compute_core_microbiome.py -i tk_TW_05-16WK.biom -o otu_table_core_tk_TW_05-16WK
 compute_core_microbiome.py -i tk_TW_08-16WK.biom -o otu_table_core_tk_TW_08-16WK
 compute_core_microbiome.py -i tk_TW_12-16WK.biom -o otu_table_core_tk_TW_12-16WK
 compute_core_microbiome.py -i tk_TW_16WK.biom -o otu_table_core_tk_TW_16WK
-
 
 
 
