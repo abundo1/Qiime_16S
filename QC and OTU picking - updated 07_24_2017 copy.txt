@@ -347,7 +347,7 @@ compute_core_microbiome.py -i tk_16WTW.biom -o otu_table_core_16WTK_TW
 #SINUS WASH_Dominant_Core
 #3-16WK
 
-validate_mapping_file.py -m tk_mapping_3-16WK -o Validated_Tk_mapping_3-16WK
+validate_mapping_file.py -m tk_mapping_3-16WK.txt -o Validated_Tk_mapping_3-16WK
 filter_samples_from_otu_table.py -i k_SW.biom -o ck_SW_03-51WK.biom -m ckSW_core_3-51WK_corrected.txt -s 'Core:Y'
 biom convert -i ck_SW_03-51WK.biom   -o ck_SW_03-51WKbiom_withtaxonomy.txt --to-tsv --header-key taxonomy
 compute_core_microbiome.py -i ck_SW_03-51WK.biom -o otu_table_core_ck_SW_03-51WK
