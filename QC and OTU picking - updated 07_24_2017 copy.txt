@@ -187,7 +187,7 @@ filter_samples_from_otu_table.py -i ck_TW.biom -o ck_TW_51W.biom -m ck_mapping_c
 filter_samples_from_otu_table.py -i ck_SW.biom -o filtered_ck_SW_.biom --sample_id_fp ids.txt --negate_sample_id_fp
 
 #CONVERT .biom TO .txt WITH TAXONOMY HEADER
-
+biom convert -i ck_everything.biom  -o ck_everything_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
 #CE
 biom convert -i ck_CE_01W.biom  -o ck_CE_01W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
 
