@@ -208,6 +208,8 @@ biom convert -i ck_CE_36W.biom  -o ck_CE_36W_biom_withtaxonomy.txt --to-tsv --he
 biom convert -i ck_CE_51W.biom  -o ck_CE_51W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
 
 #IL
+
+biom convert -i ck_IL.biom  -o ck_IL_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
 biom convert -i ck_IL_01W.biom  -o ck_IL_01W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
 
 biom convert -i ck_IL_03W.biom  -o ck_IL_03W_biom_withtaxonomy.txt --to-tsv --header-key taxonomy
@@ -371,6 +373,78 @@ filter_samples_from_otu_table.py -i ck_TW.biom -o ck_TW_51WK.biom -m ckSW_mappin
 biom convert -i ck_TW_51WK.biom   -o ck_TW_51WKbiom_withtaxonomy.txt --to-tsv --header-key taxonomy
 compute_core_microbiome.py -i ck_TW_51WK.biom -o otu_table_core_ck_TW_51WK
 
+# Ileum TISSUE
+#3-51WK
+filter_samples_from_otu_table.py -i ck_IL.biom -o ck_IL_03-51WK.biom -m ckSW_core_3-51WK_corrected.txt -s 'Core:Y'
+compute_core_microbiome.py -i ck_IL_03-51WK.biom -o otu_table_core_ck_IL_03-51WK
+
+#5-51WK
+filter_samples_from_otu_table.py -i ck_IL.biom -o ck_IL_05-51WK.biom -m ckSW_mapping_file_core_5-51WK_corrected.txt -s 'Core:Y'
+compute_core_microbiome.py -i ck_IL_05-51WK.biom -o otu_table_core_ck_IL_05-51WK
+
+#8-51WK
+filter_samples_from_otu_table.py -i ck_IL.biom -o ck_IL_08-51WK.biom -m ckSW_mapping_file_core_8-51WK_corrected.txt -s 'Core:Y'
+compute_core_microbiome.py -i ck_IL_08-51WK.biom -o otu_table_core_ck_IL_08-51WK
+
+#12-51WK
+filter_samples_from_otu_table.py -i ck_IL.biom -o ck_IL_12-51WK.biom -m ckSW_mapping_file_core_12-51WK_corrected.txt -s 'Core:Y'
+compute_core_microbiome.py -i ck_IL_12-51WK.biom -o otu_table_core_ck_IL_12-51WK
+
+#16-51WK
+filter_samples_from_otu_table.py -i ck_IL.biom -o ck_IL_16-51WK.biom -m ckSW_mapping_file_core_16-51WK_corrected.txt -s 'Core:Y'
+compute_core_microbiome.py -i ck_IL_16-51WK.biom -o otu_table_core_ck_IL_16-51WK
+
+
+#25-51WK
+filter_samples_from_otu_table.py -i ck_IL.biom -o ck_IL_25-51WK.biom -m ckSW_mapping_file_core_25-51WK_corrected.txt -s 'Core:Y'
+compute_core_microbiome.py -i ck_IL_25-51WK.biom -o otu_table_core_ck_IL_25-51WK
+
+
+#36-51WK
+filter_samples_from_otu_table.py -i ck_IL.biom -o ck_IL_36-51WK.biom -m ckSW_mapping_file_core_36-51WK_corrected.txt -s 'Core:Y'
+compute_core_microbiome.py -i ck_IL_36-51WK.biom -o otu_table_core_ck_IL_36-51WK
+
+
+#51WK
+filter_samples_from_otu_table.py -i ck_IL.biom -o ck_IL_51WK.biom -m ckSW_mapping_file_core_51WK_corrected.txt -s 'Core:Y'
+compute_core_microbiome.py -i ck_IL_51WK.biom -o otu_table_core_ck_IL_51WK
+
+# CECUM TISSUE
+#3-51WK
+filter_samples_from_otu_table.py -i ck_CE.biom -o ck_CE_03-51WK.biom -m ckSW_core_3-51WK_corrected.txt -s 'Core:Y'
+compute_core_microbiome.py -i ck_CE_03-51WK.biom -o otu_table_core_ck_CE_03-51WK
+
+#5-51WK
+filter_samples_from_otu_table.py -i ck_CE.biom -o ck_CE_05-51WK.biom -m ckSW_mapping_file_core_5-51WK_corrected.txt -s 'Core:Y'
+compute_core_microbiome.py -i ck_CE_05-51WK.biom -o otu_table_core_ck_CE_05-51WK
+
+#8-51WK
+filter_samples_from_otu_table.py -i ck_CE.biom -o ck_CE_08-51WK.biom -m ckSW_mapping_file_core_8-51WK_corrected.txt -s 'Core:Y'
+compute_core_microbiome.py -i ck_CE_08-51WK.biom -o otu_table_core_ck_CE_08-51WK
+
+#12-51WK
+filter_samples_from_otu_table.py -i ck_CE.biom -o ck_CE_12-51WK.biom -m ckSW_mapping_file_core_12-51WK_corrected.txt -s 'Core:Y'
+compute_core_microbiome.py -i ck_CE_12-51WK.biom -o otu_table_core_ck_CE_12-51WK
+
+#16-51WK
+filter_samples_from_otu_table.py -i ck_CE.biom -o ck_CE_16-51WK.biom -m ckSW_mapping_file_core_16-51WK_corrected.txt -s 'Core:Y'
+compute_core_microbiome.py -i ck_CE_16-51WK.biom -o otu_table_core_ck_CE_16-51WK
+
+
+#25-51WK
+filter_samples_from_otu_table.py -i ck_CE.biom -o ck_CE_25-51WK.biom -m ckSW_mapping_file_core_25-51WK_corrected.txt -s 'Core:Y'
+compute_core_microbiome.py -i ck_CE_25-51WK.biom -o otu_table_core_ck_CE_25-51WK
+
+
+#36-51WK
+filter_samples_from_otu_table.py -i ck_CE.biom -o ck_CE_36-51WK.biom -m ckSW_mapping_file_core_36-51WK_corrected.txt -s 'Core:Y'
+compute_core_microbiome.py -i ck_CE_36-51WK.biom -o otu_table_core_ck_CE_36-51WK
+
+
+#51WK
+filter_samples_from_otu_table.py -i ck_CE.biom -o ck_CE_51WK.biom -m ckSW_mapping_file_core_51WK_corrected.txt -s 'Core:Y'
+compute_core_microbiome.py -i ck_CE_51WK.biom -o otu_table_core_ck_CE_51WK
+
 
 
 #All
@@ -394,6 +468,9 @@ compute_core_microbiome.py -i ck_CE_36W.biom -o otu_table_core_ck_CE_36W
 compute_core_microbiome.py -i ck_CE_51W.biom -o otu_table_core_ck_CE_51W
 
 #IL
+
+compute_core_microbiome.py -i ck_IL.biom -o otu_table_core_ck_IL_all_ages
+
 compute_core_microbiome.py -i ck_IL_01W.biom -o otu_table_core_ck_IL_01W
 
 compute_core_microbiome.py -i ck_IL_03W.biom -o otu_table_core_ck_IL_01W
